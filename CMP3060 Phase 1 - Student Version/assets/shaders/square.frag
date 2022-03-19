@@ -11,8 +11,8 @@ uniform vec4 outside_color = vec4(0.0, 0.0, 0.0, 1.0);
 void main(){
     //TODO: Write code that will draw the square
 
-    vec4 distance = abs(gl_FragCoord - vec4(center,0,0));
-    float max_dist = max(distance.x,distance.y);
+    vec4 dist = abs(gl_FragCoord - vec4(center,0,0));
+    float max_dist = max(dist.x,dist.y);
     
     if( max_dist <= side_length/2){
         frag_color = inside_color;
