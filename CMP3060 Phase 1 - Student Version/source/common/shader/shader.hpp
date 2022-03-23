@@ -30,11 +30,15 @@ namespace our
         void use()
         {
             // TODO: call opengl to use the program identified by this->program
+            glUseProgram(this->program);
+            
         }
 
         GLuint getUniformLocation(const std::string &name)
         {
             // TODO: call opengl to get the uniform location for the uniform defined by name from this->program
+            const char* nameCStr = name.c_str(); // openGl needs char pointer instead of string
+            return glGetUniformLocation(this->program,nameCStr);
         }
 
         void set(const std::string &uniform, GLfloat value)

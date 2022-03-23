@@ -20,6 +20,7 @@ void our::ShaderProgram::destroy() {
 std::string checkForShaderCompilationErrors(GLuint shader);
 std::string checkForLinkingErrors(GLuint program);
 
+
 bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const {
     // Here, we open the file and read a string from it containing the GLSL code of our shader
     std::ifstream file(filename);
@@ -52,17 +53,16 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 }
 
 
-
 bool our::ShaderProgram::link() const {
     //TODO: call opengl to link the program identified by this->program 
-
+    glLinkProgram(this->program);
     // Here we check for linking errors
     //TODO: Uncomment this if block
-    // if(auto error = checkForLinkingErrors(program); error.size() != 0){
-    //     std::cerr << "LINKING ERROR" << std::endl;
-    //     std::cerr << error << std::endl;
-    //     return false;
-    // }
+    if(auto error = checkForLinkingErrors(program); error.size() != 0){
+        std::cerr << "LINKING ERROR" << std::endl;
+        std::cerr << error << std::endl;
+        return false;
+    }
 
     return true;
 }
