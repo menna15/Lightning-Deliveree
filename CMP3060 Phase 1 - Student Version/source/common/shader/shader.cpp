@@ -35,7 +35,16 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     GLuint shaderID = glCreateShader(type);
 
     //TODO: send the source code to the shader and compile it
+    /*
+    shaderID : shader object which will hold shader contant 
+    1 : number of shaders that should be read from the next pointer 
+    sourceCStr : pointer to array of strings(array of char) that each string represent 1 shader 
+    nullptr : this pointer represent length of array; nullptr that mean search for null terminator char '/0' 
+    */
     glShaderSource(shaderID, 1, &sourceCStr, nullptr);
+    /*
+    this function compiles shader
+    */
     glCompileShader(shaderID);
     // Here we check for compilation errors
     //TODO: Uncomment this if block
@@ -48,7 +57,13 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
     
     //TODO: attach the shader to the program then delete the shader
+    /*
+    it attach the shader "shaderID" to the program "program"
+    */
     glAttachShader(program, shaderID);
+    /*
+    it flagged for deletion but the program will keep shader contant till detach the shader from the program
+    */
     glDeleteShader(shaderID);
     //We return true since the compilation succeeded
     return true;
