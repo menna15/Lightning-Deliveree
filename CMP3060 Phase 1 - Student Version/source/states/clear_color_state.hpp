@@ -4,7 +4,7 @@
 
 class ClearColorState : public our::State
 {
-// those variables will be used within the class methods only 
+// those variables will be used within the class methods only.
 private:
     GLfloat r = 0.0;
     GLfloat g = 0.0;
