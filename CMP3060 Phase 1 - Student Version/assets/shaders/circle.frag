@@ -14,6 +14,7 @@ void main(){
     float diff_x = gl_FragCoord.x - center[0];
     float diff_y = gl_FragCoord.y - center[1];
     float dist = pow((pow(diff_x, 2) + pow(diff_y, 2)), 0.5);
+    
     if(dist <= radius){
         frag_color = inside_color;
     } else {

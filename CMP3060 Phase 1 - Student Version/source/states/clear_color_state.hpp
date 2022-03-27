@@ -19,6 +19,7 @@ private:
         // To know how read data from a nlohmann::json object,
         // look at the following documentation: https://json.nlohmann.me/features/element_access/
         const nlohmann::json &clearColor = getApp()->getConfig().at("scene").at("clear-color");
+
         r = clearColor.at("r");
         g = clearColor.at("g");
         b = clearColor.at("b");
