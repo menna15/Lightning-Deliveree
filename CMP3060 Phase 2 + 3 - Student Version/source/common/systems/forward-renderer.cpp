@@ -62,7 +62,7 @@ namespace our {
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
             colorTarget->bind();
-            // GLuint mip_levels = glm::floor(glm::log2(glm::max<float>(windowSize.x, windowSize.y))) + 1;
+            GLuint mip_levels = (GLuint) glm::floor(glm::log2(glm::max<int>(windowSize.x,windowSize.y))) + 1;
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);
 
             depthTarget->bind();
@@ -181,7 +181,7 @@ namespace our {
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 10) bind the framebuffer
-            // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
 
         }
 
@@ -212,13 +212,6 @@ namespace our {
 
             //TODO: (Req 9) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
-            // glm::mat4 alwaysBehindTransform = glm::mat4(
-            // //  Row1, Row2, Row3, Row4
-            //     1.0f, 0.0f, 0.0f, 0.0f, // Column1
-            //     0.0f, 1.0f, 0.0f, 0.0f, // Column2
-            //     0.0f, 0.0f, 1.0f, 1.0f, // Column3
-            //     0.0f, 0.0f, 0.0f, 1.0f  // Column4
-            // );
 
             glm::mat4 alwaysBehindTransform = glm::mat4(
             //  Row1, Row2, Row3, Row4
@@ -228,7 +221,7 @@ namespace our {
                 0.0f, 0.0f, 1.0f, 1.0f  // Column4
             );
             //TODO: (Req 9) set the "transform" uniform
-            skyMaterial->shader->set("transform",  alwaysBehindTransform * VP * skyModel.toMat4() );
+            skyMaterial->shader->set("transform",  alwaysBehindTransform * VP * skyModel.toMat4());
      
             //TODO: (Req 9) draw the sky sphere
             skySphere->draw();
