@@ -62,7 +62,7 @@ namespace our {
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
             colorTarget->bind();
-            GLuint mip_levels = glm::floor(glm::log2(glm::max<float>(windowSize.x, windowSize.y))) + 1;
+            // GLuint mip_levels = glm::floor(glm::log2(glm::max<float>(windowSize.x, windowSize.y))) + 1;
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);
 
             depthTarget->bind();
@@ -224,8 +224,8 @@ namespace our {
             //  Row1, Row2, Row3, Row4
                 1.0f, 0.0f, 0.0f, 0.0f, // Column1
                 0.0f, 1.0f, 0.0f, 0.0f, // Column2
-                0.0f, 0.0f, 0.0f, 1.0f, // Column3
-                0.0f, 0.0f, 0.0f, 1.0f  // Column4
+                0.0f, 0.0f, 0.0f, 0.0f, // Column3
+                0.0f, 0.0f, 1.0f, 1.0f  // Column4
             );
             //TODO: (Req 9) set the "transform" uniform
             skyMaterial->shader->set("transform",  alwaysBehindTransform * VP * skyModel.toMat4() );
@@ -233,7 +233,7 @@ namespace our {
             //TODO: (Req 9) draw the sky sphere
             skySphere->draw();
         }
-        
+
         //TODO: (Req 8) Draw all the transparent commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto& command : transparentCommands){
