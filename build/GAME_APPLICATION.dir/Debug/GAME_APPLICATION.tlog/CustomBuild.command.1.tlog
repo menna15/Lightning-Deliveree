@@ -1,0 +1,10 @@
+^D:\DESKTOP\COLLEGE\THIRD YEAR\2ND-SEMESTER\COMPUTER GRAPHICS\GRAPHICS\GRAPHICS-PROJECT\CMP3060 PHASE 2 + 3 - STUDENT VERSION\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SD:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/CMP3060 Phase 2 + 3 - Student Version" "-BD:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build" --check-stamp-file "D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
