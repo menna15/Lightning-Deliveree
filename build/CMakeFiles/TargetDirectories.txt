@@ -1,5 +1,0 @@
-D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/CMakeFiles/GAME_APPLICATION.dir
-D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/CMakeFiles/ALL_BUILD.dir
-D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/CMakeFiles/ZERO_CHECK.dir
-D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/vendor/glfw/CMakeFiles/ALL_BUILD.dir
-D:/Desktop/college/Third year/2nd-semester/Computer Graphics/Graphics/Graphics-Project/build/vendor/glfw/src/CMakeFiles/glfw.dir
