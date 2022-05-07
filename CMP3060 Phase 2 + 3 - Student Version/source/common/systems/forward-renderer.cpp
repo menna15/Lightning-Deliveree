@@ -63,7 +63,7 @@ namespace our {
             // The depth format can be (Depth component with 24 bits).
             colorTarget->bind();
             GLuint mip_levels = glm::floor(glm::log2(glm::max<float>(windowSize.x, windowSize.y))) + 1;
-            glTexStorage2D(GL_TEXTURE_2D, mip_levels, GL_RGBA8, windowSize.x, windowSize.y);
+            glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);
 
             depthTarget->bind();
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24,windowSize.x, windowSize.y);
@@ -153,19 +153,19 @@ namespace our {
 
         //TODO: (Req 8) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, 0.0);
-        cameraForward = camera->getViewMatrix()[2];  // eye , center , up direction -- will be changed to up instead of [2]
+        glm::vec3 eyeTrans= camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,0, 1.0);
+        glm::vec3 centerTrans = camera->getOwner()->getLocalToWorldMatrix() *glm::vec4(0,0,-1, 1.0);
+        glm::vec3 cameraForward = glm::normalize(centerTrans - eyeTrans);
 
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 8) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
-            if(first.center.z >= cameraForward.z && second.center.z <= cameraForward.z) return true;
-            else return false;
+            return (glm::dot(cameraForward,first.center) > glm::dot(cameraForward , second.center));
         });
 
         //TODO: (Req 8) Get the camera ViewProjection matrix and store it in VP
-        glm::mat4 VP = glm::mat4(1.0f);
-        VP = camera->getProjectionMatrix(windowSize);
+        // glm::mat4 VP = glm::mat4(1.0f);
+        glm::mat4 VP = camera->getProjectionMatrix(windowSize) * camera->getViewMatrix();
 
         //TODO: (Req 8) Set the OpenGL viewport using windowSize
         glViewport(0, 0, windowSize.x,windowSize.y);
@@ -175,13 +175,13 @@ namespace our {
         glClearDepth(1.0);
 
         //TODO: (Req 8) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        glDepthMask(true);
         glColorMask(true, true, true, true);
+        glDepthMask(true);
 
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 10) bind the framebuffer
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
+            // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
 
         }
 
@@ -193,6 +193,7 @@ namespace our {
         
         for(auto& command : opaqueCommands){
             // For each transform, we compute the MVP matrix and send it to the "transform" uniform
+            command.material->setup();
             command.material->shader->set("transform", VP * command.localToWorld);   // iam not sure that localToWorld is the transformation matrix we need.
             // Then we draw a mesh instance
             command.mesh->draw();
@@ -204,10 +205,9 @@ namespace our {
             skyMaterial->setup();
             
             //TODO: (Req 9) Get the camera position
-            glm::vec3 cameraPosition  = camera->getViewMatrix()[1];  // will be changed to center instead of [1]
-
+            glm::vec3 cameraPosition  = eyeTrans;
             //TODO: (Req 9) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
-            our::Transform skyModel;
+            Transform skyModel;
             skyModel.position = cameraPosition;
 
             //TODO: (Req 9) We want the sky to be drawn behind everything (in NDC space, z=1)
@@ -216,7 +216,7 @@ namespace our {
             // //  Row1, Row2, Row3, Row4
             //     1.0f, 0.0f, 0.0f, 0.0f, // Column1
             //     0.0f, 1.0f, 0.0f, 0.0f, // Column2
-            //     0.0f, 0.0f, 1.0f, 0.0f, // Column3
+            //     0.0f, 0.0f, 1.0f, 1.0f, // Column3
             //     0.0f, 0.0f, 0.0f, 1.0f  // Column4
             // );
 
@@ -228,26 +228,28 @@ namespace our {
                 0.0f, 0.0f, 0.0f, 1.0f  // Column4
             );
             //TODO: (Req 9) set the "transform" uniform
-            skyMaterial->shader->set("transform", alwaysBehindTransform * VP * skyModel.toMat4() );
-
+            skyMaterial->shader->set("transform",  alwaysBehindTransform * VP * skyModel.toMat4() );
+     
             //TODO: (Req 9) draw the sky sphere
             skySphere->draw();
         }
+        
         //TODO: (Req 8) Draw all the transparent commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         for(auto& command : transparentCommands){
+            command.material->setup();
             // For each transform, we compute the MVP matrix and send it to the "transform" uniform
-            command.material->shader->set("transform", VP * command.localToWorld);   // i'm not sure that localToWorld is the transformation matrix we need.
+            command.material->shader->set("transform", VP * command.localToWorld);   
             // Then we draw a mesh instance
             command.mesh->draw();
         }
 
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
-            //TODO: (Req 10) Return to the default framebuffer
+            // TODO: (Req 10) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             
-            //TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
+            // TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
             glBindVertexArray(postProcessVertexArray);
             glDrawArrays(GL_TRIANGLES, 0, 3);
