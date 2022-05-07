@@ -62,8 +62,8 @@ namespace our {
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
             colorTarget->bind();
-            GLuint mip_levels = (GLuint) glm::floor(glm::log2(glm::max<int>(windowSize.x,windowSize.y))) + 1;
-            glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, windowSize.x, windowSize.y);
+            GLuint mip_levels = (GLuint) glm::floor(glm::log2(glm::max<float>((float)windowSize.x,(float)windowSize.y))) + 1;
+            glTexStorage2D(GL_TEXTURE_2D, mip_levels, GL_RGBA8, windowSize.x, windowSize.y);
 
             depthTarget->bind();
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24,windowSize.x, windowSize.y);
