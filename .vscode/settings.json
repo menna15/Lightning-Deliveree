@@ -1,3 +1,11 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/CMP3060 Phase 2 + 3 - Student Version"
+    "cmake.sourceDirectory": "${workspaceFolder}/CMP3060 Phase 2 + 3 - Student Version",
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            "*.deprecated": {
+                "foreground": "#808080",
+                "italic": true
+            }
+        }
+    }
 }
