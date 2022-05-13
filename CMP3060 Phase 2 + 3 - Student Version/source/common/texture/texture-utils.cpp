@@ -8,8 +8,12 @@
 our::Texture2D *our::texture_utils::empty(GLenum format, glm::ivec2 size)
 {
     our::Texture2D *texture = new our::Texture2D();
+    texture->bind();
+    int levels = 1;
+    glTexStorage2D(GL_TEXTURE_2D, levels, format, size.x, size.y);
     // TODO: (Req 10) Finish this function to create an empty texture with the given size and format
-    glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr);
+    // glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr);
+
     return texture;
 }
 
