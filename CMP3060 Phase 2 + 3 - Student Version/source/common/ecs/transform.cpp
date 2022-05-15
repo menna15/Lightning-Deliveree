@@ -24,7 +24,7 @@ namespace our
         glm::mat4 scaling = glm::scale(
             glm::mat4(1.0f),
             this->scale);
-
+        /// constructing the final transformation matrix
         glm::mat4 TRS = translation * rotation * scaling;
         return TRS;
     }

@@ -36,8 +36,12 @@ namespace our {
         // - the up direction which is the vector (0,1,0) but after being transformed by M
         // then you can use glm::lookAt
         
-        glm::vec4 eyeTrans= M*glm::vec4(0,0,0, 1.0);
+
+        /// transforming eye position coordinates to the world space
+        glm::vec4 eyeTrans= M*glm::vec4(0,0,0, 1.0); 
+        /// transforming center position coordinates to the world space
         glm::vec4 centerTrans= M*glm::vec4(0,0,-1, 1.0);
+        /// transforming up direction coordinates to the world space
         glm::vec4 upTrans=  M*glm::vec4(0,1,0, 1.0);
         return glm::lookAt(glm::vec3(eyeTrans[0],
         eyeTrans[1],
@@ -59,13 +63,14 @@ namespace our {
         // Left and Right are the same but after being multiplied by the aspect ratio
         // For the perspective camera, you can use glm::perspective
         float dim= float(this->orthoHeight)/2;
-        float aspectRatio=viewportSize[0]/float(viewportSize[1]);
-        glm::mat4 orth= glm::ortho(-dim*aspectRatio,dim*aspectRatio,-dim,dim);
+        float aspectRatio=viewportSize[0]/float(viewportSize[1]); /// width / height
+        glm::mat4 orth= glm::ortho(-dim*aspectRatio,dim*aspectRatio,-dim,dim); // orthographic projection
         glm::mat4 proj= glm::perspective( this->fovY,//angle of view(zoom)
             aspectRatio,//aspect ratio
             this->near, //later(near plane: a2rab 7aga a2dar ashofha)
             this->far//(far plane: ab3ad 7aga a2dar ashofha)
             );
-        return this->cameraType==CameraType::ORTHOGRAPHIC?orth:proj;
+            
+        return this->cameraType==CameraType::ORTHOGRAPHIC?orth:proj; // check the type of the camera projection
     }
 }

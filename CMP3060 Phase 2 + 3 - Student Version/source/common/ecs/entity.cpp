@@ -12,7 +12,7 @@ namespace our {
     // its parent's parent's matrix and so on till you reach the root.
     glm::mat4 Entity::getLocalToWorldMatrix() const {
         //TODO: (Req 7) Write this function
-        
+        /// a recursion function that transform to the parents until reaching the null
         if(parent==nullptr)
             return localTransform.toMat4();
         else
