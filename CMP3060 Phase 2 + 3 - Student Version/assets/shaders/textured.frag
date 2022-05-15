@@ -7,6 +7,7 @@ in Varyings {
 
 out vec4 frag_color;
 
+
 uniform vec4 tint;
 uniform sampler2D tex;
 // float alphaThreshold;
