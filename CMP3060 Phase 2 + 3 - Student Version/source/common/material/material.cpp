@@ -62,8 +62,9 @@ namespace our {
 
     // setup of the lightMaterial to create the needed textures based on the type
     void LightMaterial::setup() const {
-        // TexturedMaterial::setup();
-        Material::setup();
+        
+        TexturedMaterial::setup();
+        // Material::setup();
 
         if(specular != nullptr)
         {
@@ -123,10 +124,10 @@ namespace our {
 
     // This function read the material data from a json object
     void LightMaterial::deserialize(const nlohmann::json& data){
-        Material::deserialize(data);
-        // TexturedMaterial::deserialize(data);
+        // Material::deserialize(data);
+        TexturedMaterial::deserialize(data);
         if(!data.is_object()) return;
-        sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
+        // sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
         albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
         specular = AssetLoader<Texture2D>::get(data.value("specular", ""));
         emissive = AssetLoader<Texture2D>::get(data.value("emissive", ""));
