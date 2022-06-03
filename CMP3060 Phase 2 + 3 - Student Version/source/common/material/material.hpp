@@ -4,7 +4,7 @@
 #include "../texture/texture2d.hpp"
 #include "../texture/sampler.hpp"
 #include "../shader/shader.hpp"
-
+#include "../components/light.hpp"
 #include <glm/vec4.hpp>
 #include <json/json.hpp>
 
@@ -53,12 +53,24 @@ namespace our {
         void deserialize(const nlohmann::json& data) override;
     };
 
+    // light material will inherit from the  material and define all texture types for the light material.
+    class LightMaterial : public Material {
+    public:
+        Texture2D  *albedo, *specular , *emissive , *roughness , *ambient_occlusion;
+        Sampler* sampler;
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
+
     // This function returns a new material instance based on the given type
     inline Material* createMaterialFromType(const std::string& type){
         if(type == "tinted"){
             return new TintedMaterial();
         } else if(type == "textured"){
             return new TexturedMaterial();
+        } else if(type == "lighted"){      // if the given type is lighted 
+            return new LightMaterial();
         } else {
             return new Material();
         }
