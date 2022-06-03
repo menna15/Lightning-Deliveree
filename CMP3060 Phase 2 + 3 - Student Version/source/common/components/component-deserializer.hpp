@@ -6,6 +6,7 @@
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
 #include "light.hpp"
+#include "collider.hpp"
 namespace our {
 
     // Given a json object, this function picks and creates a component in the given entity
@@ -24,6 +25,9 @@ namespace our {
         }
         else if (type == LightComponent::getID()) {
             component = entity->addComponent<LightComponent>();
+        }
+        else if (type == colliderComponent::getID()) {
+            component = entity->addComponent<colliderComponent>();
         }
         if(component) component->deserialize(data);
     }

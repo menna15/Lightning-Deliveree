@@ -41,7 +41,6 @@ int main(int argc, char **argv)
 
     // Create the application
     our::Application app(app_config);
-
     // Register all the states of the project in the application
     app.registerState<Playstate>("main");
     app.registerState<MeshTestState>("mesh-test");

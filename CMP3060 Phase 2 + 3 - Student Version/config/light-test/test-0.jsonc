@@ -73,7 +73,6 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
                     "texture":"monkey",
                     "sampler": "default",
                     "albedo" :"albedo",
@@ -173,10 +172,10 @@
                         "mesh": "monkey",
                         "material": "monkey"
                     },
-                    // {
-                    //     "type": "Collider",
-                    //     "radius":0.0
-                    // },
+                    {
+                        "type": "Collider",
+                        "radius":0.5
+                    },
                     {
                     "type": "Movement",
                     "linearVelocity": [-0.4, -0.4, 0]

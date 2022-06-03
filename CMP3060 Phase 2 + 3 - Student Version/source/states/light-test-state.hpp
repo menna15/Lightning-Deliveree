@@ -5,6 +5,7 @@
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
+#include <systems/collision-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
 
@@ -17,6 +18,7 @@ class Lightstate: public our::State {
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    our::collisionSystem collision;
     
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
@@ -31,6 +33,7 @@ class Lightstate: public our::State {
             world.deserialize(config["world"]);
         }
         cameraController.enter(getApp());
+        collision.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
@@ -38,11 +41,14 @@ class Lightstate: public our::State {
     }
 
     void onDraw(double deltaTime) override {
+        collision.update(&world, (float)deltaTime);
         renderer.render(&world);
+
     }
 
     void onDestroy() override {
-        world.clear();
+        cameraController.exit();
         our::clearAllAssets();
+        world.clear();
     }
 };
