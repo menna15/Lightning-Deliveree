@@ -229,7 +229,7 @@ namespace our
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
                 light_material->shader->set("light_count",(int)lights.size());
 
-                for(int i = 0 ; i<lights.size(); i++)
+                for(unsigned i = 0 ; i<lights.size(); i++)
                 {   
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(-1, 0, 0, 0);
@@ -319,7 +319,7 @@ namespace our
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
                 light_material->shader->set("light_count",(int)lights.size());
 
-                for(int i = 0 ; i<lights.size(); i++)
+                for(unsigned i = 0 ; i<lights.size(); i++)
                 {   
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 1.5, 1);
                     glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
