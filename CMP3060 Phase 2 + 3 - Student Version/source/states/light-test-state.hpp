@@ -4,7 +4,7 @@
 
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
-#include <systems/free-camera-controller.hpp>
+#include <systems/mesh-renderer-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
 
@@ -15,7 +15,7 @@ class Lightstate: public our::State {
 
     our::World world;
     our::ForwardRenderer renderer;
-    our::FreeCameraControllerSystem cameraController;
+    our::MeshRendererControllerSystem cameraController;
     our::MovementSystem movementSystem;
     
     void onInitialize() override {
