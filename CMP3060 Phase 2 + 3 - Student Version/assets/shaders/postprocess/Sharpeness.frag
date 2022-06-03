@@ -3,7 +3,7 @@
 // The texture holding the scene pixels
 uniform sampler2D tex;
 
-// Read "assets/shaders/fullscreen.vert" to know what "tex_coord" holds;
+// ref : https://github.com/thoxey/ezPP/blob/master/ezPP/src/ezsharpness.cpp
 in vec2 tex_coord;
 
 out vec4 frag_color;
