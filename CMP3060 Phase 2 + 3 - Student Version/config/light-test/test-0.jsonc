@@ -53,6 +53,7 @@
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "Suzanne":"assets/models/Suzanne.obj"
+                // "energy": "assets/models/WinnerCup.obj"
             },
             "samplers":{
                 "default":{},
@@ -72,13 +73,14 @@
                             "enabled": true
                         }
                     },
+                    "tint": [1, 1, 1, 1],
+                    "texture":"monkey",
                     "sampler": "default",
                     "albedo" :"albedo",
                     "roughness":"roughness",
                     "specular":"specular",
                     "emissive":"emissive",
                     "ambient_occlusion":"ambient_occlusion"
-                    // "texture":"monkey"
                 },
                 "monkey":{
                     "type": "textured",
@@ -93,12 +95,26 @@
                     },
                     "sampler": "default",
                     "texture":"monkey"
+                },
+                "energy":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [0.45, 0.4, 0.5, 1]
+
                 }
             }
         },
         "world":[
             {
-                "position": [0, 0, 3],
+                "position": [0, 0, 7],
                 "components": [
                     {
                         "type": "Camera"
@@ -127,7 +143,7 @@
                 ]
 
             },
-            {
+            {   "name":"robot",
                 "position": [0, 0, 0],
                 "rotation": [-45, 0, 0],
                 "components": [
@@ -138,21 +154,18 @@
                     },
                     {
                         "type": "Movement",
-                        // "linearVelocity": [0, 0.1, 0],
                         "angularVelocity": [30, 0, 45]
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.0
                     }
-                    // ,
-                    // {
-                    //     "type": "Light",
-                    //     "lightType":"Spot",
-                    //     "diffuse":[ 1, 0.2, 0.1],
-                    //     "specular":[1, 0.2, 0.1]
-                    // }
 
                 ]
-            },
-            {
-                "position": [2, 0, 0],
+            }
+            ,
+            {   "name":"battery",
+                "position": [3, 3, 0],
                 "rotation": [-20, 0, 0],
                 "components": [
                     {
@@ -160,10 +173,13 @@
                         "mesh": "monkey",
                         "material": "monkey"
                     },
+                    // {
+                    //     "type": "Collider",
+                    //     "radius":0.0
+                    // },
                     {
-                        "type": "Movement",
-                        // "linearVelocity": [0, 0.1, 0]
-                        "angularVelocity": [30, 0, 45]
+                    "type": "Movement",
+                    "linearVelocity": [-0.4, -0.4, 0]
                     }
 
                 ]
