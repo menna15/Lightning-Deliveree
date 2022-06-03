@@ -59,7 +59,7 @@ namespace our
                     if (collider1_type != collider2_type)
                     {                                
                         auto dist = abs(glm::distance(center1,center2));
-                        if (dist >= collider_1->radius + collider_2->radius)
+                        if (dist <= collider_1->radius + collider_2->radius)
                         {   
                             printf("/n exceed distance /n");
                             if((collider1_type == "car" && collider2_type == "robot") || (collider1_type == "robot" && collider2_type == "car") ||
@@ -74,7 +74,6 @@ namespace our
                                 printf("here2");
 
                                 world->markForRemoval(collider_1->getOwner());
-                                // world->deleteMarkedEntities();
 
                             }
                             else if(collider1_type == "robot" && collider2_type == "battery")
