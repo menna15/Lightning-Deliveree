@@ -1,0 +1,46 @@
+{
+    "start-scene": "main-menu",
+    "window":
+    {
+        "title":"Default Game Window",
+        "size":{
+            "width":1224,
+            "height":720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer":{
+            "sky": "assets/textures/sky5.jpg"
+            //"postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets":{
+            "shaders":{
+                "tinted":{
+                    "vs":"assets/shaders/tinted.vert",
+                    "fs":"assets/shaders/tinted.frag"
+                },
+                "textured":{
+                    "vs":"assets/shaders/textured.vert",
+                    "fs":"assets/shaders/textured.frag"
+                }
+            }
+            
+            
+          
+        },
+        "world":[
+            {
+                "position": [0, 0, 10],
+                "components": [
+                    {
+                        "type": "Camera"
+                    }
+                   
+                ]
+                
+            }
+           
+        ]
+    }
+}
