@@ -1,0 +1,191 @@
+{
+    "start-scene": "main",
+    "window":
+    {
+        "title":"Default Game Window",
+        "size":{
+            "width":1280,
+            "height":720
+        },
+        "fullscreen": false
+    },
+    "screenshots":{
+        "directory": "screenshots/light-test",
+        "requests": [
+            { "file": "test-1.png", "frame":  1 }
+        ]
+    },
+    "scene": {
+        "renderer":{
+            
+            
+        },
+        "assets":{
+            "shaders":{
+                "tinted":{
+                    "vs":"assets/shaders/tinted.vert",
+                    "fs":"assets/shaders/tinted.frag"
+                },
+                "textured":{
+                    "vs":"assets/shaders/textured.vert",
+                    "fs":"assets/shaders/textured.frag"
+                },
+                "light":{
+                    "vs":"assets/shaders/light.vert",
+                    "fs":"assets/shaders/light.frag"
+                }
+            },
+            "textures":{
+                "moon": "assets/textures/moon.jpg",
+                "grass": "assets/textures/grass_ground_d.jpg",
+                "wood": "assets/textures/wood.jpg",
+                "glass": "assets/textures/glass-panels.png",
+                "monkey": "assets/textures/monkey.png",
+                "albedo": "assets/textures/albedo.jpg",
+                "specular": "assets/textures/specular.jpg",
+                "ambient_occlusion": "assets/textures/ambient_occlusion.jpg",
+                "emissive":"assets/textures/emissive.jpg",
+                "roughness":"assets/textures/roughness.jpg"
+            },
+            "meshes":{
+                "cube": "assets/models/cube.obj",
+                "monkey": "assets/models/monkey.obj",
+                "plane": "assets/models/plane.obj",
+                "sphere": "assets/models/sphere.obj",
+                "Suzanne":"assets/models/Suzanne.obj"
+                // "energy": "assets/models/WinnerCup.obj"
+            },
+            "samplers":{
+                "default":{},
+                "pixelated":{
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials":{
+                "suzanne":{
+                    "type": "lighted",
+                    "shader": "light",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture":"monkey",
+                    "sampler": "default",
+                    "albedo" :"albedo",
+                    "roughness":"roughness",
+                    "specular":"specular",
+                    "emissive":"emissive",
+                    "ambient_occlusion":"ambient_occlusion"
+                },
+                "monkey":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "sampler": "default",
+                    "texture":"monkey"
+                },
+                "energy":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [0.45, 0.4, 0.5, 1]
+
+                }
+            }
+        },
+        "world":[
+            {
+                "position": [0, 0, 7],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        
+                    }
+                ]
+            },
+            {   
+                "position": [0, 0, 1.5],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType":"Directional",
+                        "diffuse":[ 1, 1, 1],
+                        "specular":[1, 1, 1],
+                        "cone_angles.inner":10,
+                        "cone-angles.outer":50
+                    }
+                ]
+
+            },
+            {   "name":"robot",
+                "position": [0, 0, 0],
+                "rotation": [-45, 0, 0],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "Suzanne",
+                        "material": "suzanne"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [30, 0, 45]
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.0
+                    }
+
+                ]
+            }
+            ,
+            {   "name":"battery",
+                "position": [3, 3, 0],
+                "rotation": [-20, 0, 0],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "monkey",
+                        "material": "monkey"
+                    },
+                    // {
+                    //     "type": "Collider",
+                    //     "radius":0.0
+                    // },
+                    {
+                    "type": "Movement",
+                    "linearVelocity": [-0.4, -0.4, 0]
+                    }
+
+                ]
+            }
+
+            
+        ]
+    }
+}
