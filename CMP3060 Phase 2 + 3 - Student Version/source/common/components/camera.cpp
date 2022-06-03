@@ -42,7 +42,7 @@ namespace our {
         /// transforming center position coordinates to the world space
         glm::vec4 centerTrans= M*glm::vec4(0,0,-1, 1.0);
         /// transforming up direction coordinates to the world space
-        glm::vec4 upTrans=  M*glm::vec4(0,1,0, 1.0);
+        glm::vec4 upTrans=  M*glm::vec4(0,1,0, 0.0);
         return glm::lookAt(glm::vec3(eyeTrans[0],
         eyeTrans[1],
         eyeTrans[2]),
