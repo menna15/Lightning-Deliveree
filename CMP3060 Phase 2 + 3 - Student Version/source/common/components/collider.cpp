@@ -7,7 +7,7 @@ namespace our {
     void colliderComponent::deserialize(const nlohmann::json& data){
         if(!data.is_object()) return;
 
-        radius = data.value((float)"radius", 1.0f);
+        radius = data.value("radius", 1.0f);
 
     }
 }
