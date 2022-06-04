@@ -75,6 +75,10 @@ set(COMMON_SOURCES
         source/common/components/mesh-renderer.cpp
         source/common/components/mesh-renderer-controller.hpp
         source/common/components/mesh-renderer-controller.cpp
+        source/common/components/energy.cpp
+        source/common/components/energy.hpp
+
+
         source/common/components/movement.hpp
         source/common/components/movement.cpp
         source/common/components/light.hpp
@@ -82,7 +86,7 @@ set(COMMON_SOURCES
         source/common/components/collider.hpp
         source/common/components/collider.cpp
         source/common/components/component-deserializer.hpp
-
+        source/common/systems/energy-controller.hpp
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
         source/common/systems/mesh-renderer-controller.hpp

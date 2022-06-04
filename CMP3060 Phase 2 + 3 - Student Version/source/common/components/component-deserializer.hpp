@@ -7,6 +7,8 @@
 #include "movement.hpp"
 #include "light.hpp"
 #include "collider.hpp"
+#include "energy.hpp"
+
 namespace our {
 
     // Given a json object, this function picks and creates a component in the given entity
@@ -28,6 +30,9 @@ namespace our {
         }
         else if (type == colliderComponent::getID()) {
             component = entity->addComponent<colliderComponent>();
+        }
+        else if (type == EnergyComponent::getID()) {
+            component = entity->addComponent<EnergyComponent>();
         }
         if(component) component->deserialize(data);
     }

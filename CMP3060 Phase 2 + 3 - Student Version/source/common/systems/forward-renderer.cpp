@@ -14,7 +14,7 @@ namespace our
         if (config.contains("sky"))
         {
             // First, we create a sphere which will be used to draw the sky
-            this->skySphere = mesh_utils::sphere(glm::ivec2(16, 16));
+            this->skySphere = mesh_utils::sphere(glm::ivec2(12, 12));
 
             // We can draw the sky using the same shader used to draw textured objects
             ShaderProgram *skyShader = new ShaderProgram();

@@ -7,6 +7,7 @@
 #include <systems/mesh-renderer-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
+#include <systems/energy-controller.hpp>
 
 // This state shows how to use the ECS framework and deserialization.
 class MainMenu : public our::State
@@ -16,6 +17,7 @@ class MainMenu : public our::State
     our::ForwardRenderer renderer;
     our::MeshRendererControllerSystem meshRendererController;
     our::MovementSystem movementSystem;
+    our::EnergySystem energySystem;
 
     void onInitialize() override
     {
@@ -43,6 +45,7 @@ class MainMenu : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         meshRendererController.update(&world, (float)deltaTime);
+        energySystem.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
     }
