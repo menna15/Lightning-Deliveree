@@ -89,7 +89,8 @@
             }
         },
         "world":[
-            {
+            {   
+                "name":"robot",
                 "position": [0, -0.90, -15],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
@@ -100,6 +101,10 @@
                     },
                     {
                         "type": "Mesh Renderer Controller"
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.7
                     }
                 ],
                 "children": [
@@ -115,6 +120,7 @@
                 ]
             },
             {
+                "name":"car",
                 "position": [2, -0.90, -4],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
@@ -122,10 +128,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "car",
                         "material": "car"
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.6
                     }
                 ]
             },
-            {
+            {                
+                "name":"car",
                 "position": [-2, -0.90, 0],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
@@ -133,10 +144,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "car",
                         "material": "car"
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.6
                     }
                 ]
             },
             {
+                "name":"car",
                 "position": [0, -0.90, 4],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
@@ -144,6 +160,10 @@
                         "type": "Mesh Renderer",
                         "mesh": "car",
                         "material": "car"
+                    },
+                    {
+                        "type":"Collider",
+                        "radius":0.6
                     }
                 ]
             },
