@@ -1,37 +1,30 @@
 {
     "start-scene": "game",
-    "window":
-    {
-        "title":"Lightning Deliveree",
-        "size":{
-            "width":1280,
-            "height":720
+    "window": {
+        "title": "Lightning Deliveree",
+        "size": {
+            "width": 1280,
+            "height": 720
         },
         "fullscreen": false
     },
     "scene": {
-        "renderer":{
-            // "sky": "assets/textures/sky.jpg",
-            // "postprocess": "assets/shaders/postprocess/Sharpeness.frag"
-        },
-        "assets":{
-            "shaders":{
-                "tinted":{
-                    "vs":"assets/shaders/tinted.vert",
-                    "fs":"assets/shaders/tinted.frag"
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
                 },
-                "textured":{
-                    "vs":"assets/shaders/textured.vert",
-                    "fs":"assets/shaders/textured.frag"
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
                 },
-                "lighted":
-                {
-                    "vs":"assets/shaders/light.vert",
-                    "fs":"assets/shaders/light.frag"
-
+                "lighted": {
+                    "vs": "assets/shaders/light.vert",
+                    "fs": "assets/shaders/light.frag"
                 }
             },
-            "textures":{
+            "textures": {
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "start": "assets/textures/start.png",
                 "road": "assets/textures/road.jpg",
@@ -39,29 +32,28 @@
                 "moon": "assets/textures/moon.jpg",
                 "battery": "assets/textures/battery.jpg"
             },
-            "meshes":{
+            "meshes": {
                 "plane": "assets/models/plane.obj",
                 "cylinder": "assets/models/cylinder.obj",
                 "car": "assets/models/car.obj",
-                "moon":"assets/models/sphere.obj",
+                "moon": "assets/models/sphere.obj",
                 "cube": "assets/models/cube.obj"
-                // "building": "assets/models/building.obj"
             },
-            "samplers":{
-                "default":{},
-                "pixelated":{
+            "samplers": {
+                "default": {},
+                "pixelated": {
                     "MAG_FILTER": "GL_NEAREST"
                 }
             },
-            "materials":{
-                "grass":{
+            "materials": {
+                "grass": {
                     "type": "lighted",
                     "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -69,40 +61,40 @@
                     "texture": "grass",
                     "sampler": "pixelated"
                 },
-                "building1":{
+                "building1": {
                     "type": "tinted",
                     "shader": "tinted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
                     "tint": [0.882, 0.549, 0.498, 1]
                 },
-                "building2":{
+                "building2": {
                     "type": "tinted",
                     "shader": "tinted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
                     "tint": [1, 0.529, 0.141, 1]
                 },
-                "start":{
+                "start": {
                     "type": "lighted",
                     "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -110,14 +102,14 @@
                     "texture": "start",
                     "sampler": "default"
                 },
-                "road":{
+                "road": {
                     "type": "lighted",
                     "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -125,14 +117,14 @@
                     "texture": "road",
                     "sampler": "default"
                 },
-                "car":{
+                "car": {
                     "type": "lighted",
                     "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -140,30 +132,30 @@
                     "texture": "car",
                     "sampler": "default"
                 },
-                "moon":{
+                "moon": {
                     "type": "lighted",
                     "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "moon",
                     "sampler": "default",
-                    "roughness":"roughness"
+                    "roughness": "roughness"
                 },
-                "battery":{
-                    "type": "textured",
-                    "shader": "textured",
+                "battery": {
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -173,10 +165,10 @@
                 }
             }
         },
-        "world":[
-            {   
-                "name":"robot",
-                "position": [0, -0.90, -15],
+        "world": [
+            {
+                "name": "robot",
+                "position": [0, -0.9, -15],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -188,9 +180,8 @@
                         "type": "Mesh Renderer Controller"
                     },
                     {
-                        "type":"Collider",
-                        "radius":0.8
-
+                        "type": "Collider",
+                        "radius": 0.8
                     }
                 ],
                 "children": [
@@ -206,8 +197,8 @@
                 ]
             },
             {
-                "name":"car",
-                "position": [1.5, -0.90, 0],
+                "name": "car",
+                "position": [1.5, -0.9, 0],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -216,32 +207,14 @@
                         "material": "car"
                     },
                     {
-                        "type":"Collider",
-                        "radius":0.8
-
-                    }
-                ]
-            },
-            {                
-                "name":"car",
-                "position": [-1.5, -0.90, 7],
-                "scale": [0.8, 0.8, 0.8],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "car",
-                        "material": "car"
-                    },
-                    {
-                        "type":"Collider",
+                        "type": "Collider",
                         "radius": 0.8
                     }
                 ]
             },
             {
-
-                "name":"car",
-                "position": [0, -0.90, 20],
+                "name": "car",
+                "position": [-1.5, -0.9, 7],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -250,16 +223,30 @@
                         "material": "car"
                     },
                     {
-                        "type":"Collider",
+                        "type": "Collider",
                         "radius": 0.8
-
                     }
                 ]
             },
             {
-
-                "name":"battery",
-                "position": [-2, -0.90, 15],
+                "name": "car",
+                "position": [0, -0.9, 20],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Collider",
+                        "radius": 0.8
+                    }
+                ]
+            },
+            {
+                "name": "battery",
+                "position": [-2, -0.9, 15],
                 "scale": [0.3, 0.6, 0.3],
                 "components": [
                     {
@@ -268,7 +255,7 @@
                         "material": "battery"
                     },
                     {
-                        "type":"Collider",
+                        "type": "Collider",
                         "radius": 0.3
                     },
                     {
@@ -278,7 +265,53 @@
                 ]
             },
             {
-                "position": [0, -0.90, -15],
+                "name": "battery light",
+                "position": [-2, -0.95, 13],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "Point",
+                        "specular": [1, 0.3, 1.0],
+                        "diffuse": [1, 0.3, 1.0],
+                        "attenuation": [0.001, 0.001, 0.0001]
+                    }
+                ]
+            },
+            {
+                "name": "battery",
+                "position": [1, -0.9, 15],
+                "scale": [0.3, 0.6, 0.3],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cylinder",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Collider",
+                        "radius": 0.3
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name": "battery light",
+                "position": [1, -0.95, 13],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "Point",
+                        "specular": [0, 0.7, 1.0],
+                        "diffuse": [0, 0.7, 1.0],
+                        "attenuation": [0.001, 0.001, 0.0001]
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, -15],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 3, 1],
                 "components": [
@@ -290,7 +323,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, -2],
+                "position": [0, -0.9, -2],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
@@ -302,7 +335,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, 8],
+                "position": [0, -0.9, 8],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
@@ -314,7 +347,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, 27],
+                "position": [0, -0.9, 27],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
@@ -326,7 +359,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, 40],
+                "position": [0, -0.9, 40],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 3, 1],
                 "components": [
@@ -452,7 +485,7 @@
             {
                 "position": [0, 10, 0],
                 "rotation": [45, 45, 0],
-                "scale": [2, 2, 2],
+                "scale": [1, 1, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -461,15 +494,15 @@
                     },
                     {
                         "type": "Light",
-                        "lightType":"Spot",
-                        "diffuse":[ 0.2, 0.2, 0.1],
-                        "specular":[ 0.3, 0.3, 0.3],
-                        "attenuation":[0.001, 0.001, 0.0001],
-                        "cone_angles.inner":10,
-                        "cone-angles.outer":50
+                        "lightType": "Spot",
+                        "diffuse": [0.4, 1, 1],
+                        "specular": [0.4, 1, 1],
+                        "attenuation": [0.001, 0.001, 0.0001],
+                        "cone_angles.inner": 10,
+                        "cone-angles.outer": 50
                     },
                     {
-                        "type":"Movement",
+                        "type": "Movement",
                         "angularVelocity": [30, 0, 45]
                     }
                 ]

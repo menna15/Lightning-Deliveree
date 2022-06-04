@@ -26,10 +26,11 @@
 #endif
 
 #include "texture/screenshot.hpp"
-//using namespace irrklang;
+// using namespace irrklang;
 
-//ISoundEngine *SoundEngine = createIrrKlangDevice();
-std::string default_screenshot_filepath() {
+// ISoundEngine *SoundEngine = createIrrKlangDevice();
+std::string default_screenshot_filepath()
+{
     std::stringstream stream;
     auto time = std::time(nullptr);
     auto localtime = std::localtime(&time);
@@ -235,10 +236,11 @@ int our::Application::run(int run_for_frames)
     // Start the ImGui context and set dark style (just my preference :D)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    if(currentState!=states["main-menu"]) ImGui::StyleColorsDark(); 
+    ImGuiIO &io = ImGui::GetIO();
+    if (currentState != states["main-menu"])
+        ImGui::StyleColorsDark();
     StyleColorsCustom(&ImGui::GetStyle());
-    ImFont* font1 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Blazed.ttf", 64.0f);
+    ImFont* font1 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Blazed.ttf", 72.0f);
     ImFont* font2= io.Fonts->AddFontFromFileTTF("assets\\fonts\\americorps.ttf", 30.0f);      
     
     // Initialize ImGui for GLFW and OpenGL
@@ -296,48 +298,43 @@ int our::Application::run(int run_for_frames)
         ImGui_ImplGlfw_NewFrame();
 
         ImGui::NewFrame();
-        //if(currentState!=states["main-menu"]) currentState->onImmediateGui(); 
-        if(currentState==states["main-menu"])
+        // if(currentState!=states["main-menu"]) currentState->onImmediateGui();
+        if (currentState == states["main-menu"])
         {
-            
-			//ImGui::SetWindowSize(ImVec2(win_config.size.x, win_config.size.y));
-             // Create a window called "Hello, world!" and append into it.
-			ImGui::Begin("Hello", false,  ImGuiWindowFlags_NoBackground |
-            
-             ImGuiWindowFlags_NoMove |
-             ImGuiWindowFlags_NoDecoration);
-             ImGui::SetWindowSize(ImVec2(win_config.size.x, win_config.size.y));  
+            // ImGui::SetWindowSize(ImVec2(win_config.size.x, win_config.size.y));
+            //  Create a window called "Hello, world!" and append into it.
+            ImGui::Begin("Hello", false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
+            ImGui::SetWindowSize(ImVec2(win_config.size.x, win_config.size.y));
             auto windowWidth = ImGui::GetWindowSize().x;
-            ImGuiStyle* style =&ImGui::GetStyle();
-            ImVec4* colors = style->Colors;
+            ImGuiStyle *style = &ImGui::GetStyle();
+            ImVec4 *colors = style->Colors;
 
-            colors[ImGuiCol_Text]= ImVec4(212.0f/256.0f, 14.0f/256.0f, 0.0f, 1.0f); //212, 14, 0
-            auto textWidth   = ImGui::CalcTextSize("Lightning Deliveree").x;
+            colors[ImGuiCol_Text] = ImVec4(212.0f / 256.0f, 14.0f / 256.0f, 0.0f, 1.0f); // 212, 14, 0
+            auto textWidth = ImGui::CalcTextSize("Lightning Deliveree").x;
             ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
+            colors[ImGuiCol_Text]= ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
             ImGui::Text("Lightning Deliveree");
             ImGui::PushFont(font2);
-            colors[ImGuiCol_Text]= ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
+            colors[ImGuiCol_Text] = ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
 
-            if (ImGui::Button("Start", ImVec2(200,100)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-				{
-                    changeState("game");
-                    //ImGui::EndMenu();
-                }
+            if (ImGui::Button("Start", ImVec2(200, 100)) || keyboard.justPressed(GLFW_KEY_ENTER)) // Buttons return true when clicked (most widgets return true when edited/activated)
+            {
+                changeState("game");
+            }
 
-            if (ImGui::Button("options", ImVec2(200,100)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-				{}
+            if (ImGui::Button("options", ImVec2(200, 100)))
+            {
+            }
 
-            if (ImGui::Button("exit", ImVec2(200,100)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-				{
-                    // Call for cleaning up
-               //currentState->onDestroy();
+            if (ImGui::Button("exit", ImVec2(200, 100)) || keyboard.justPressed(GLFW_KEY_ESCAPE))
+            {
+                ImGui::PopFont();
+                ImGui::End();
                 break;
-                
-                }
-            
+            }
+
             ImGui::PopFont();
             ImGui::End();
-        
         }
         // if(currentState) currentState->onImmediateGui(); // Call to run any required Immediate GUI.
 
@@ -511,14 +508,14 @@ void our::Application::StyleColorsCustom(ImGuiStyle *dst)
     ImGuiStyle* style = dst ? dst : &ImGui::GetStyle();
     ImVec4* colors = style->Colors;
 
-    colors[ImGuiCol_Text]                   = ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
+    colors[ImGuiCol_Text]                   = ImVec4(0.0f, 0.0f, 0.0f, 0.6f); // 245, 90, 0
     colors[ImGuiCol_TextDisabled]           = ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
     colors[ImGuiCol_WindowBg]               = ImVec4(0.00f, 0.00f, 0.00f, 0.70f);
     colors[ImGuiCol_ChildBg]                = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
     colors[ImGuiCol_PopupBg]                = ImVec4(0.11f, 0.11f, 0.14f, 0.92f);
     colors[ImGuiCol_Border]                 = ImVec4(0.50f, 0.50f, 0.50f, 0.50f);
     colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-    colors[ImGuiCol_Button]                 = ImVec4(1.0f, 0.813f, 0.0f, 1.0f);  //255, 208, 0
+    colors[ImGuiCol_Button]                 = ImVec4(0.0f, 0.0f, 0.0f, 0.6f);
     colors[ImGuiCol_ButtonHovered]          = ImVec4(0.816f, 0.672f,0.02f, 1.0f); //209, 172, 6
     colors[ImGuiCol_ButtonActive]           = ImVec4(0.0f, 0.f, 0.0f, 1.00f);
     
@@ -528,5 +525,4 @@ void our::Application::StyleColorsCustom(ImGuiStyle *dst)
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\Blazed.ttf", 24.0f);
 
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\americorps.ttf", 14.0f);
-
 }
