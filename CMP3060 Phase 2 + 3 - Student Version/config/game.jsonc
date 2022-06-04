@@ -91,7 +91,7 @@
         "world":[
             {
                 "position": [0, -0.90, -15],
-                "rotation": [0, 0, 0],
+                "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -111,6 +111,39 @@
                                 "type": "Camera"
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "position": [2, -0.90, -4],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    }
+                ]
+            },
+            {
+                "position": [-2, -0.90, 0],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.90, 4],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
                     }
                 ]
             },

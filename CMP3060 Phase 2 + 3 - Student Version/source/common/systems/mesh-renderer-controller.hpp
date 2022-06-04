@@ -106,12 +106,12 @@ namespace our
             // A & D moves the player left or right 
             if(app->getKeyboard().isPressed(GLFW_KEY_A)) 
             {
-                rotation.y += 0.01;
+                rotation.y += 0.01f;
                 // position += right * (deltaTime * current_sensitivity.x);
             }
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) 
             {
-                rotation.y -= 0.01;
+                rotation.y -= 0.01f;
                 // position -= right * (deltaTime * current_sensitivity.x);
             }
         }
