@@ -11,7 +11,7 @@
     },
     "scene": {
         "renderer":{
-            "sky": "assets/textures/Winner.png"
+            "sky": "assets/textures/neon.png"
         },
         "assets":{
             "shaders":{
@@ -57,7 +57,7 @@
         "world":[
             {
                 "position": [0,0,10],
-                "rotation": [40, 40, 0],
+                "rotation": [45, 90, 0],
                 "components": [
                     {
                         "type": "Camera",
@@ -67,6 +67,19 @@
                         "fov":90,
                         "near":0.01,
                         "far":1000
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [0.0, -0.5, -1.5],
+                        "scale": [3, 2, 2],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "plane",
+                                "material": "ground"
+                            }
+                        ]
                     }
                 ]
             }
