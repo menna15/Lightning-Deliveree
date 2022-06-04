@@ -1,5 +1,5 @@
 {
-    "start-scene": "main",
+    "start-scene": "light-test",
     "window":
     {
         "title":"Game Window",

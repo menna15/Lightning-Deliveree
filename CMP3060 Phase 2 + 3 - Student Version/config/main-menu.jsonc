@@ -25,7 +25,7 @@
                 }
             },
             "textures":{
-                "grass": "assets/textures/neon_ground.jpg",
+                "ground": "assets/textures/neon_ground.jpg",
                 "road": "assets/textures/road.jpg",
                 "car": "assets/textures/car.jpg"
             },
@@ -41,7 +41,7 @@
                 }
             },
             "materials":{
-                "grass":{
+                "ground":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -53,7 +53,7 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "grass",
+                    "texture": "ground",
                     "sampler": "default"
                 },
                 "road":{
@@ -129,7 +129,7 @@
                             {
                                 "type": "Mesh Renderer",
                                 "mesh": "plane",
-                                "material": "grass"
+                                "material": "ground"
                             }
                         ]
                     }
