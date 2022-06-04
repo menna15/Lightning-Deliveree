@@ -157,8 +157,8 @@
                     "roughness":"roughness"
                 },
                 "battery":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -192,6 +192,15 @@
                         "radius":0.8
 
                     }
+                    // {
+                    //     "type": "Light",
+                    //     "lightType":"Spot",
+                    //     "diffuse":[ 0.3, 0.3, 0.3],
+                    //     "specular":[ 0.3, 0.3, 0.3],
+                    //     "attenuation":[0.001, 0.001, 0.0001],
+                    //     "cone_angles.inner":10,
+                    //     "cone-angles.outer":50
+                    // }
                 ],
                 "children": [
                     {
@@ -205,6 +214,38 @@
                     }
                 ]
             },
+            // {
+            //     "name":"battery",
+            //     "position": [2, -0.90, -15],
+            //     "scale": [0.3, 0.6, 0.3],
+            //     "components": [
+            //     {
+            //         "type": "Mesh Renderer",
+            //         "mesh": "cylinder",
+            //         "material": "battery"
+            //     },
+            //     {
+            //         "type":"Collider",
+            //         "radius": 0.3
+            //     },
+            //     {
+            //         "type": "Movement",
+            //         "angularVelocity": [0, 45, 0]
+            //     }
+            //     ]
+            // },
+            // {   "name":"battery light",
+            //     "position": [2, -0.95, -17],
+            //     "components": [
+            //         {
+            //             "type": "Light",
+            //             "lightType":"Point",
+            //             "specular":[ 0.4, 1.0, 0.2],
+            //             "diffuse":[ 0.4, 1.0, 0.2],
+            //             "attenuation":[0.001, 0.001 ,0.0001]
+            //         }
+            //     ]
+            // },
             {
                 "name":"car",
                 "position": [1.5, -0.90, 0],
@@ -272,6 +313,53 @@
                     {
                         "type": "Movement",
                         "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name":"battery light",
+                "position": [-2, -0.95, 13],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType":"Point",
+                        "specular":[ 1, 0.3, 1.0],
+                        "diffuse":[ 1, 0.3, 1.0],
+                        "attenuation":[0.001, 0.001 ,0.0001]
+                    }
+                ]
+            },
+            {
+
+                "name":"battery",
+                "position": [1, -0.90, 15],
+                "scale": [0.3, 0.6, 0.3],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cylinder",
+                        "material": "battery"
+                    },
+                    {
+                        "type":"Collider",
+                        "radius": 0.3
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name":"battery light",
+                "position": [1, -0.95, 13],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType":"Point",
+                        "specular":[ 0, 0.7, 1.0],
+                        "diffuse":[ 0, 0.7, 1.0],
+                        "attenuation":[0.001, 0.001 ,0.0001]
                     }
                 ]
             },
@@ -450,7 +538,7 @@
             {
                 "position": [0, 10, 0],
                 "rotation": [45, 45, 0],
-                "scale": [2, 2, 2],
+                "scale": [1,1, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -460,8 +548,8 @@
                     {
                         "type": "Light",
                         "lightType":"Spot",
-                        "diffuse":[ 0.2, 0.2, 0.1],
-                        "specular":[ 0.3, 0.3, 0.3],
+                        "diffuse":[ 0.4, 1,1],
+                        "specular":[ 0.4,1, 1],
                         "attenuation":[0.001, 0.001, 0.0001],
                         "cone_angles.inner":10,
                         "cone-angles.outer":50
