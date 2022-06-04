@@ -44,8 +44,6 @@ class Playstate : public our::State
 
         // auto &config = getApp()->getConfig()["scene"];
 
-        cout << "config: " << config["window"]["title"] << endl;
-
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
