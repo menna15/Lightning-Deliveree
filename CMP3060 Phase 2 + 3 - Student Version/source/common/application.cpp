@@ -240,9 +240,9 @@ int our::Application::run(int run_for_frames)
     if (currentState != states["main-menu"])
         ImGui::StyleColorsDark();
     StyleColorsCustom(&ImGui::GetStyle());
-    ImFont *font1 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Blazed.ttf", 64.0f);
-    ImFont *font2 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\americorps.ttf", 30.0f);
-
+    ImFont* font1 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\Blazed.ttf", 72.0f);
+    ImFont* font2= io.Fonts->AddFontFromFileTTF("assets\\fonts\\americorps.ttf", 30.0f);      
+    
     // Initialize ImGui for GLFW and OpenGL
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330 core");
@@ -308,6 +308,7 @@ int our::Application::run(int run_for_frames)
             colors[ImGuiCol_Text] = ImVec4(212.0f / 256.0f, 14.0f / 256.0f, 0.0f, 1.0f); // 212, 14, 0
             auto textWidth = ImGui::CalcTextSize("Lightning Deliveree").x;
             ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
+            colors[ImGuiCol_Text]= ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
             ImGui::Text("Lightning Deliveree");
             ImGui::PushFont(font2);
             colors[ImGuiCol_Text] = ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
@@ -500,23 +501,23 @@ void our::Application::setupCallbacks()
 /// Customizing the main menu buttons style
 void our::Application::StyleColorsCustom(ImGuiStyle *dst)
 {
-    ImGuiStyle *style = dst ? dst : &ImGui::GetStyle();
-    ImVec4 *colors = style->Colors;
+    ImGuiStyle* style = dst ? dst : &ImGui::GetStyle();
+    ImVec4* colors = style->Colors;
 
-    colors[ImGuiCol_Text] = ImVec4(0.957f, 0.352f, 0.0f, 1.0f); // 245, 90, 0
-    colors[ImGuiCol_TextDisabled] = ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
-    colors[ImGuiCol_WindowBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.70f);
-    colors[ImGuiCol_ChildBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-    colors[ImGuiCol_PopupBg] = ImVec4(0.11f, 0.11f, 0.14f, 0.92f);
-    colors[ImGuiCol_Border] = ImVec4(0.50f, 0.50f, 0.50f, 0.50f);
-    colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-    colors[ImGuiCol_Button] = ImVec4(1.0f, 0.813f, 0.0f, 1.0f);           // 255, 208, 0
-    colors[ImGuiCol_ButtonHovered] = ImVec4(0.816f, 0.672f, 0.02f, 1.0f); // 209, 172, 6
-    colors[ImGuiCol_ButtonActive] = ImVec4(0.0f, 0.f, 0.0f, 1.00f);
-
-    style->ItemSpacing = ImVec2(10.0f, 50.0f);
-    ImGuiIO *inOut = &ImGui::GetIO();
-    style->WindowPadding = ImVec2(50.0f, 50.0f);
+    colors[ImGuiCol_Text]                   = ImVec4(0.0f, 0.0f, 0.0f, 0.6f); // 245, 90, 0
+    colors[ImGuiCol_TextDisabled]           = ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
+    colors[ImGuiCol_WindowBg]               = ImVec4(0.00f, 0.00f, 0.00f, 0.70f);
+    colors[ImGuiCol_ChildBg]                = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_PopupBg]                = ImVec4(0.11f, 0.11f, 0.14f, 0.92f);
+    colors[ImGuiCol_Border]                 = ImVec4(0.50f, 0.50f, 0.50f, 0.50f);
+    colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_Button]                 = ImVec4(0.0f, 0.0f, 0.0f, 0.6f);
+    colors[ImGuiCol_ButtonHovered]          = ImVec4(0.816f, 0.672f,0.02f, 1.0f); //209, 172, 6
+    colors[ImGuiCol_ButtonActive]           = ImVec4(0.0f, 0.f, 0.0f, 1.00f);
+    
+    style->ItemSpacing=ImVec2(10.0f,50.0f);
+    ImGuiIO* inOut=&ImGui::GetIO();
+    style->WindowPadding= ImVec2(50.0f,50.0f);
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\Blazed.ttf", 24.0f);
 
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\americorps.ttf", 14.0f);
