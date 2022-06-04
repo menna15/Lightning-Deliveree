@@ -258,7 +258,7 @@ int our::Application::run(int run_for_frames) {
 
             if (ImGui::Button("Start", ImVec2(300,200)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 				{
-                    changeState("main");
+                    changeState("game");
                     //ImGui::EndMenu();
                 }
 

@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     our::Application app(app_config);
     // Register all the states of the project in the application
     app.registerState<MainMenu>("main-menu");
-    app.registerState<Playstate>("main");
+    app.registerState<Playstate>("game");
     app.registerState<MeshTestState>("mesh-test");
     app.registerState<TransformTestState>("transform-test");
     app.registerState<PipelineTestState>("pipeline-test");

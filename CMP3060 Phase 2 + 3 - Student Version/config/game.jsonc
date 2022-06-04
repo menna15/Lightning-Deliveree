@@ -1,5 +1,5 @@
 {
-    "start-scene": "main",
+    "start-scene": "game",
     "window":
     {
         "title":"Lightning Deliveree",
@@ -11,7 +11,8 @@
     },
     "scene": {
         "renderer":{
-            "sky": "assets/textures/sky.jpg"
+            "sky": "assets/textures/sky.jpg",
+            "postprocess": "assets/shaders/postprocess/Sharpeness.frag"
         },
         "assets":{
             "shaders":{
@@ -32,6 +33,7 @@
             },
             "meshes":{
                 "plane": "assets/models/plane.obj",
+                "cube": "assets/models/cube.obj",
                 "car": "assets/models/car.obj"
                 // "building": "assets/models/building.obj"
             },
@@ -56,6 +58,32 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "grass",
                     "sampler": "default"
+                },
+                "building1":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [0.882, 0.549, 0.498, 1]
+                },
+                "building2":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 0.529, 0.141, 1]
                 },
                 "start":{
                     "type": "textured",
@@ -119,13 +147,13 @@
                         "type": "Mesh Renderer Controller"
                     },
                     {
-                        "type":"Collider",
-                        "radius":0.7
+                        "type": "Collider",
+                        "radius": 0.8
                     }
                 ],
                 "children": [
                     {
-                        "position": [0, 2, -6],
+                        "position": [0, 2, -5],
                         "rotation": [-15, 180, 0],
                         "components": [
                             {
@@ -137,7 +165,7 @@
             },
             {
                 "name":"car",
-                "position": [2, -0.90, 0],
+                "position": [1.5, -0.90, 0],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -147,13 +175,13 @@
                     },
                     {
                         "type":"Collider",
-                        "radius":0.6
+                        "radius": 0.8
                     }
                 ]
             },
             {                
                 "name":"car",
-                "position": [-2, -0.90, 7],
+                "position": [-1.5, -0.90, 7],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -163,14 +191,14 @@
                     },
                     {
                         "type":"Collider",
-                        "radius":0.6
+                        "radius": 0.8
                     }
                 ]
             },
             {
 
                 "name":"car",
-                "position": [-3, -0.90, 20],
+                "position": [0, -0.90, 20],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -180,7 +208,7 @@
                     },
                     {
                         "type":"Collider",
-                        "radius":0.6
+                        "radius": 0.8
                     }
                 ]
             },
@@ -229,6 +257,106 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "road"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.90, 40],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 3, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "start"
+                    }
+                ]
+            },
+            {
+                "position": [10, 9.1, -10],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    }
+                ]
+            },
+            {
+                "position": [10, 9.1, 5],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    }
+                ]
+            },
+            {
+                "position": [10, 9.1, 20],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    }
+                ]
+            },
+            {
+                "position": [10, 9.1, 35],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    }
+                ]
+            },
+            {
+                "position": [-10, 9.1, -10],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    }
+                ]
+            },
+            {
+                "position": [-10, 9.1, 5],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    }
+                ]
+            },
+            {
+                "position": [-10, 9.1, 20],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    }
+                ]
+            },
+            {
+                "position": [-10, 9.1, 35],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
                     }
                 ]
             },
