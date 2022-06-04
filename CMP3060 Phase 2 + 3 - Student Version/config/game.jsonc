@@ -67,7 +67,7 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "grass",
-                    "sampler": "pixelated"
+                    "sampler": "default"
                 },
                 "building1":{
                     "type": "tinted",
