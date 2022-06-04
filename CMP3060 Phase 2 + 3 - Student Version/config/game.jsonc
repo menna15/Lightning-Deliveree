@@ -26,6 +26,7 @@
             },
             "textures":{
                 "grass": "assets/textures/grass_ground_d.jpg",
+                "start": "assets/textures/start.png",
                 "road": "assets/textures/road.jpg",
                 "car": "assets/textures/car.jpg"
             },
@@ -56,6 +57,21 @@
                     "texture": "grass",
                     "sampler": "default"
                 },
+                "start":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "start",
+                    "sampler": "default"
+                },
                 "road":{
                     "type": "textured",
                     "shader": "textured",
@@ -69,7 +85,7 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "road",
-                    "sampler": "pixelated"
+                    "sampler": "default"
                 },
                 "car":{
                     "type": "textured",
@@ -115,7 +131,7 @@
                 ]
             },
             {
-                "position": [2, -0.90, -4],
+                "position": [2, -0.90, 0],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -126,7 +142,7 @@
                 ]
             },
             {
-                "position": [-2, -0.90, 0],
+                "position": [-2, -0.90, 7],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -137,7 +153,8 @@
                 ]
             },
             {
-                "position": [0, -0.90, 4],
+                "position": [-3, -0.90, 20],
+                "rotation": [0, 90, 0],
                 "scale": [0.8, 0.8, 0.8],
                 "components": [
                     {
@@ -148,7 +165,19 @@
                 ]
             },
             {
-                "position": [0, -0.90, -8],
+                "position": [0, -0.90, -15],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 3, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "start"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.90, -2],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
@@ -160,7 +189,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, 12],
+                "position": [0, -0.90, 8],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
@@ -172,7 +201,7 @@
                 ]
             },
             {
-                "position": [0, -0.90, 32],
+                "position": [0, -0.90, 27],
                 "rotation": [-90, 0, 0],
                 "scale": [3, 10, 1],
                 "components": [
