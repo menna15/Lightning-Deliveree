@@ -2,7 +2,7 @@
     "start-scene": "main-menu",
     "window":
     {
-        "title":"Lightning Deliveree - Main Menu",
+        "title":"Lightning Deliveree",
         "size":{
             "width":1224,
             "height":720
