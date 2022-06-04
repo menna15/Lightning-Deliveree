@@ -16,7 +16,7 @@ namespace our {
         // The senstivity paramter defined sensitive the camera rotation & fov is to the mouse moves and wheel scrolling
         float rotationSensitivity = 0.01f; // The angle change per pixel of mouse movement
         float fovSensitivity = 0.3f; // The fov angle change per unit of mouse wheel scrolling
-        glm::vec3 positionSensitivity = {3.0f, 3.0f, 3.0f}; // The unity per second of camera movement if WASD is pressed
+        glm::vec3 positionSensitivity = {7.0f, 7.0f, 7.0f}; // The unity per second of camera movement if WASD is pressed
         float speedupFactor = 5.0f; // A multiplier for the positionSensitivity if "Left Shift" is held.
 
         // The ID of this component type is "Mesh Renderer Controller"
