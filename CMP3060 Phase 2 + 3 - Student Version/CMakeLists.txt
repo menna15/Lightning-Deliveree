@@ -79,12 +79,15 @@ set(COMMON_SOURCES
         source/common/components/movement.cpp
         source/common/components/light.hpp
         source/common/components/light.cpp
+        source/common/components/collider.hpp
+        source/common/components/collider.cpp
         source/common/components/component-deserializer.hpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
         source/common/systems/mesh-renderer-controller.hpp
         source/common/systems/movement.hpp
+        source/common/systems/collision-controller.hpp
 )
 
 # Define the directories in which to search for the included headers

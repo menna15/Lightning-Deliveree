@@ -2,7 +2,7 @@
     "start-scene": "main",
     "window":
     {
-        "title":"Default Game Window",
+        "title":"Game Window",
         "size":{
             "width":1280,
             "height":720
@@ -17,8 +17,7 @@
     },
     "scene": {
         "renderer":{
-            
-            
+        
         },
         "assets":{
             "shaders":{
@@ -73,7 +72,6 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
                     "texture":"monkey",
                     "sampler": "default",
                     "albedo" :"albedo",
@@ -158,7 +156,7 @@
                     },
                     {
                         "type":"Collider",
-                        "radius":0.0
+                        "radius":0.7
                     }
 
                 ]
@@ -173,13 +171,13 @@
                         "mesh": "monkey",
                         "material": "monkey"
                     },
-                    // {
-                    //     "type": "Collider",
-                    //     "radius":0.0
-                    // },
+                    {
+                        "type": "Collider",
+                        "radius":0.7
+                    },
                     {
                     "type": "Movement",
-                    "linearVelocity": [-0.4, -0.4, 0]
+                    "linearVelocity": [-0.2, -0.4, 0]
                     }
 
                 ]

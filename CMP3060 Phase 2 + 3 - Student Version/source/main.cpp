@@ -6,6 +6,8 @@
 #include <application.hpp>
 
 #include "states/play-state.hpp"
+#include "states/main-menu-state.hpp"
+
 #include "states/mesh-test-state.hpp"
 #include "states/transform-test-state.hpp"
 #include "states/pipeline-test-state.hpp"
@@ -22,7 +24,7 @@ int main(int argc, char **argv)
     flags::args args(argc, argv); // Parse the command line arguments
     // config_path is the path to the json file containing the application configuration
     // Default: "config/app.json"
-    std::string config_path = args.get<std::string>("c", "config/app.jsonc");
+    std::string config_path = args.get<std::string>("c", "config/main-menu.jsonc");
     // run_for_frames is how many frames to run the application before automatically closing
     // This is useful for testing multiple configurations in a batch
     // Default: 0 where the application runs indefinitely until manually closed
@@ -41,8 +43,8 @@ int main(int argc, char **argv)
 
     // Create the application
     our::Application app(app_config);
-
     // Register all the states of the project in the application
+    app.registerState<MainMenu>("main-menu");
     app.registerState<Playstate>("main");
     app.registerState<MeshTestState>("mesh-test");
     app.registerState<TransformTestState>("transform-test");
