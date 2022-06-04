@@ -254,7 +254,7 @@
                 ],
                 "children": [
                     {
-                        "position": [0, 2, -5],
+                        "position": [0, 2, -3],
                         "rotation": [-15, 180, 0],
                         "components": [
                             {
