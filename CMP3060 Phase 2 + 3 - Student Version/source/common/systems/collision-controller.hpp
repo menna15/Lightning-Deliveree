@@ -50,7 +50,6 @@ namespace our
             // here is the logic of the collision: if 2 types of colliders are collides the action should be taken:
             for (auto collider_1 : colliders)
             {
-
                 string collider1_type = collider_1->getOwner()->name;
 
                 auto center1 = collider_1->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
@@ -63,7 +62,7 @@ namespace our
                     if (collider1_type != collider2_type)
                     {
                         auto dist = abs(glm::distance(center1, center2));
-                        std::cout << dist << "\n";
+                        // std::cout << dist << "\n";
                         if (dist <= collider_1->radius + collider_2->radius)
                         {
                             printf("\nexceed distance \n");
@@ -82,14 +81,14 @@ namespace our
                             else if (collider1_type == "battery" && collider2_type == "robot")
                             {
                                 // app->changeState("win");
-                                printf("here2");
+                                printf("here2\n");
 
                                 world->markForRemoval(collider_1->getOwner());
                             }
                             else if (collider1_type == "robot" && collider2_type == "battery")
                             {
                                 world->markForRemoval(collider_2->getOwner());
-                                printf("here3");
+                                printf("here3\n");
                             }
                         }
                     }
