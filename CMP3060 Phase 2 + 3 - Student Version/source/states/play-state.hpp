@@ -43,6 +43,7 @@ class Playstate : public our::State
         auto &config = game_config["scene"];
         
         // auto &config = getApp()->getConfig()["scene"];
+
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
