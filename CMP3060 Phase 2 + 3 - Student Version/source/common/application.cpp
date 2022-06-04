@@ -1,7 +1,7 @@
 
 
 #include "application.hpp"
-#include <irrklang/irrKlang.h>
+//#include <irrklang/irrKlang.h>
 
 #include <iostream>
 #include <fstream>
@@ -26,9 +26,9 @@
 #endif
 
 #include "texture/screenshot.hpp"
-using namespace irrklang;
+//using namespace irrklang;
 
-ISoundEngine *SoundEngine = createIrrKlangDevice();
+//ISoundEngine *SoundEngine = createIrrKlangDevice();
 std::string default_screenshot_filepath() {
     std::stringstream stream;
     auto time = std::time(nullptr);
@@ -325,13 +325,13 @@ int our::Application::run(int run_for_frames)
             if (ImGui::Button("exit", ImVec2(200,100)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 				{
                     // Call for cleaning up
-               currentState->onDestroy();
-
-                ImGui::PopFont();
-            ImGui::End();
+               //currentState->onDestroy();
+                break;
+                
                 }
             
-
+            ImGui::PopFont();
+            ImGui::End();
         
         }
         // if(currentState) currentState->onImmediateGui(); // Call to run any required Immediate GUI.
