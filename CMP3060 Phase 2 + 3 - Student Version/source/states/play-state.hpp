@@ -6,6 +6,8 @@
 #include <systems/forward-renderer.hpp>
 #include <systems/mesh-renderer-controller.hpp>
 #include <systems/collision-controller.hpp>
+#include <systems/energy-controller.hpp>
+
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
 
@@ -17,6 +19,8 @@ class Playstate : public our::State
     our::ForwardRenderer renderer;
     our::MeshRendererControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    our::EnergySystem energySystem;
+
     our::collisionSystem collision;
 
     void onInitialize() override
@@ -61,6 +65,7 @@ class Playstate : public our::State
     {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
+        energySystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
         collision.update(&world, (float)deltaTime);
         world.deleteMarkedEntities();
