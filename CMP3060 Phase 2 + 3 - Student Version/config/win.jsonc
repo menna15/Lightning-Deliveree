@@ -1,0 +1,110 @@
+{
+    "start-scene": "main-menu",
+    "window":
+    {
+        "title":"Lightning Deliveree - Main Menu",
+        "size":{
+            "width":1224,
+            "height":720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer":{
+            "sky": "assets/textures/neon.png"
+        },
+        "assets":{
+            "shaders":{
+                "tinted":{
+                    "vs":"assets/shaders/tinted.vert",
+                    "fs":"assets/shaders/tinted.frag"
+                },
+                "textured":{
+                    "vs":"assets/shaders/textured.vert",
+                    "fs":"assets/shaders/textured.frag"
+                }
+            },
+            "textures":{
+                "grass": "assets/textures/neon_ground.jpg",
+                "road": "assets/textures/road.jpg",
+                "car": "assets/textures/car.jpg"
+            },
+            "meshes":{
+                "plane": "assets/models/plane.obj",
+                "car": "assets/models/car.obj"
+                // "building": "assets/models/building.obj"
+            },
+            "samplers":{
+                "default":{},
+                "pixelated":{
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials":{
+                "grass":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "grass",
+                    "sampler": "default"
+                }
+            }
+        },
+        "world":[
+            {
+                "position": [0,0,10],
+                "rotation": [0, 20, 0],
+                "components": [
+                    {
+                        "type": "Camera",
+                        "eye":[4,1,5],
+                        "center": [0,0,0],
+                        "up":[0,1,0],
+                        "fov":90,
+                        "near":0.01,
+                        "far":1000
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [0.0, -0.5, -1.5],
+                        //"rotation": [45, 45, 0],
+                        "scale": [0.5, 0.5,0.5],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "car",
+                                 "material": "car"
+                            },
+                            {
+                                "type": "Movement",
+                                "angularVelocity": [0, 15, 0]
+                            }
+                            
+                        ]
+                    },
+                    {
+                        "position": [3, -0.9, 0.2],
+                        "rotation": [90, 180, 0],
+                        "scale": [10, 4, 1],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "plane",
+                                "material": "grass"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
