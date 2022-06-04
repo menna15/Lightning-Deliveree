@@ -73,8 +73,8 @@ set(COMMON_SOURCES
         source/common/components/camera.cpp
         source/common/components/mesh-renderer.hpp
         source/common/components/mesh-renderer.cpp
-        source/common/components/free-camera-controller.hpp
-        source/common/components/free-camera-controller.cpp
+        source/common/components/mesh-renderer-controller.hpp
+        source/common/components/mesh-renderer-controller.cpp
         source/common/components/movement.hpp
         source/common/components/movement.cpp
         source/common/components/light.hpp
@@ -85,7 +85,7 @@ set(COMMON_SOURCES
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
-        source/common/systems/free-camera-controller.hpp
+        source/common/systems/mesh-renderer-controller.hpp
         source/common/systems/movement.hpp
         source/common/systems/collision-controller.hpp
 )

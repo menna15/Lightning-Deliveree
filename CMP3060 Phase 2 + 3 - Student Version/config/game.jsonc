@@ -91,11 +91,15 @@
         "world":[
             {
                 "position": [0, -0.90, -15],
+                "rotation": [0, 0, 0],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "car",
                         "material": "car"
+                    },
+                    {
+                        "type": "Mesh Renderer Controller"
                     }
                 ],
                 "children": [
@@ -105,9 +109,6 @@
                         "components": [
                             {
                                 "type": "Camera"
-                            },
-                            {
-                                "type": "Free Camera Controller"
                             }
                         ]
                     }
