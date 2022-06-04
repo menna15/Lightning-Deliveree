@@ -62,7 +62,7 @@ namespace our
                         std::cout<<dist<<"\n";
                         if (dist <= collider_1->radius + collider_2->radius)
                         {   
-                            printf("/n exceed distance /n");
+                            printf("\nexceed distance \n");
                             if((collider1_type == "car" && collider2_type == "robot"))
                             {
                                 // app->changeState("main-menu");
