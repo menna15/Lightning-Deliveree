@@ -2,7 +2,7 @@
     "start-scene": "main-menu",
     "window":
     {
-        "title":"Default Game Window",
+        "title":"Lightning Deliveree - Main Menu",
         "size":{
             "width":1224,
             "height":720

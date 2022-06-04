@@ -23,7 +23,11 @@
                 "textured":{
                     "vs":"assets/shaders/textured.vert",
                     "fs":"assets/shaders/textured.frag"
-                }
+                },
+            "light":{
+                "vs":"assets/shaders/light.vert",
+                "fs":"assets/shaders/light.frag"
+            }
             },
             "textures":{
                 "moon": "assets/textures/moon.jpg",
@@ -81,8 +85,8 @@
                     "sampler": "pixelated"
                 },
                 "grass":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "light",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -214,6 +218,7 @@
                         "mesh": "plane",
                         "material": "glass"
                     }
+
                 ]
             },
             {

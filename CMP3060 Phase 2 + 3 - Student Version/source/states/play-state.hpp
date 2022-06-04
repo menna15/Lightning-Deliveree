@@ -4,7 +4,10 @@
 
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
-#include <systems/free-camera-controller.hpp>
+#include <systems/mesh-renderer-controller.hpp>
+#include <systems/collision-controller.hpp>
+#include <systems/energy-controller.hpp>
+
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
 
@@ -14,8 +17,11 @@ class Playstate : public our::State
 
     our::World world;
     our::ForwardRenderer renderer;
-    our::FreeCameraControllerSystem cameraController;
+    our::MeshRendererControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    our::EnergySystem energySystem;
+
+    our::collisionSystem collision;
 
     void onInitialize() override
     {
@@ -35,6 +41,8 @@ class Playstate : public our::State
         file_in.close();
         // First of all, we get the scene configuration from the app config
         auto &config = game_config["scene"];
+        
+        // auto &config = getApp()->getConfig()["scene"];
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
@@ -47,6 +55,7 @@ class Playstate : public our::State
         }
         // We initialize the camera controller system since it needs a pointer to the app
         cameraController.enter(getApp());
+        collision.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
@@ -56,7 +65,10 @@ class Playstate : public our::State
     {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
+        energySystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
+        collision.update(&world, (float)deltaTime);
+        world.deleteMarkedEntities();
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
     }

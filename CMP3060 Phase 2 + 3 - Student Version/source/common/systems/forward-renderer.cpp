@@ -232,7 +232,7 @@ namespace our
                 for(unsigned i = 0 ; i<lights.size(); i++)
                 {   
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(-1, 0, 0, 0);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
 
                     std::string light_name = "lights["+std::to_string(i)+"]";
 
@@ -308,6 +308,7 @@ namespace our
             // if it return not nullptr then it means that the material is holding Light material inside 
             // else it isn't a light material.
 
+
             if(auto light_material = dynamic_cast<LightMaterial *>(command.material); light_material)
             {
                 light_material->shader->set("VP", VP); 
@@ -321,25 +322,13 @@ namespace our
 
                 for(unsigned i = 0 ; i<lights.size(); i++)
                 {   
-                    glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 1.5, 1);
+                    glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
 
                     std::string light_name = "lights["+std::to_string(i)+"]";
 
                     light_material->shader->set(light_name +".position",light_position);
-                    if (lights[i]->light_type == LIGHT_TYPE::DIRECTIONAL)
-                    {
-                    light_material->shader->set(light_name +".type",0);
-                    }
-                    else if (lights[i]->light_type == LIGHT_TYPE::POINT)
-                    {
-                    light_material->shader->set(light_name +".type",1);
-                    }
-                    else if(lights[i]->light_type == LIGHT_TYPE::SPOT)
-                    {
-                    light_material->shader->set(light_name +".type",2);
-                    }
-                    
+                    light_material->shader->set(light_name +".type",(GLint)lights[i]->light_type);
                     light_material->shader->set(light_name +".diffuse", lights[i]->diffuse);
                     light_material->shader->set(light_name +".specular",lights[i]->specular);
                     light_material->shader->set(light_name +".attenuation",lights[i]->attenuation);
@@ -356,7 +345,6 @@ namespace our
                         case LIGHT_TYPE::POINT:
                             break;
                     }
-
                 }
 
             }
