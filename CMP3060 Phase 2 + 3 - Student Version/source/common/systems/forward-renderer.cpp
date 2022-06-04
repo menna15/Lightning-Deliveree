@@ -232,11 +232,10 @@ namespace our
                 for(unsigned i = 0 ; i<lights.size(); i++)
                 {   
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
 
                     std::string light_name = "lights["+std::to_string(i)+"]";
 
-                    light_material->shader->set(light_name +".position",light_position);
                     light_material->shader->set(light_name +".type",(GLint)lights[i]->light_type);
                     light_material->shader->set(light_name +".diffuse", lights[i]->diffuse);
                     light_material->shader->set(light_name +".specular",lights[i]->specular);
@@ -248,10 +247,13 @@ namespace our
                             light_material->shader->set(light_name + ".direction",light_direction);
                             break;
                         case LIGHT_TYPE::SPOT:
+                            light_material->shader->set(light_name +".position",light_position);
                             light_material->shader->set(light_name + ".direction",light_direction);
                             light_material->shader->set(light_name + ".cone_angles",lights[i]->cone_angles);
                             break;
                         case LIGHT_TYPE::POINT:
+                            light_material->shader->set(light_name +".position",light_position);
+
                             break;
                     }
 

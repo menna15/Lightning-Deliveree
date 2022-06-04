@@ -26,7 +26,6 @@ class Playstate : public our::State
     void onInitialize() override
     {
         std::string config_path = "config/game.jsonc";
-        
 
         // Open the config file and exit if failed
         std::ifstream file_in(config_path);
@@ -35,14 +34,18 @@ class Playstate : public our::State
             std::cerr << "Couldn't open file: " << config_path << std::endl;
             return;
         }
-        
+
         // Read the file into a json object then close the file
         nlohmann::json game_config = nlohmann::json::parse(file_in, nullptr, true, true);
         file_in.close();
+
         // First of all, we get the scene configuration from the app config
         auto &config = game_config["scene"];
-        
+
         // auto &config = getApp()->getConfig()["scene"];
+
+        cout << "config: " << config["window"]["title"] << endl;
+
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
@@ -71,23 +74,6 @@ class Playstate : public our::State
         world.deleteMarkedEntities();
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
-    }
-
-    void onImmediateGui() override
-    {
-        ImGui::Begin("Debugger");
-        auto entities = world.getEntities();
-
-        for (auto entity : entities)
-        {
-            auto component = entity->getComponent<our::CameraComponent>();
-            if (component)
-            {
-                ImGui::DragFloat3("Position", &component->getOwner()->localTransform.position.x);
-            }
-        }
-
-        ImGui::End();
     }
 
     void onDestroy() override

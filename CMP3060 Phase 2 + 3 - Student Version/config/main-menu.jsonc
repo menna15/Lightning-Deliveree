@@ -25,14 +25,13 @@
                 }
             },
             "textures":{
-                "grass": "assets/textures/neon_ground.jpg",
+                "ground": "assets/textures/neon_ground.jpg",
                 "road": "assets/textures/road.jpg",
                 "car": "assets/textures/car.jpg"
             },
             "meshes":{
                 "plane": "assets/models/plane.obj",
                 "car": "assets/models/car.obj"
-                // "building": "assets/models/building.obj"
             },
             "samplers":{
                 "default":{},
@@ -41,7 +40,7 @@
                 }
             },
             "materials":{
-                "grass":{
+                "ground":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -53,7 +52,7 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "grass",
+                    "texture": "ground",
                     "sampler": "default"
                 },
                 "road":{
@@ -106,7 +105,6 @@
                 "children": [
                     {
                         "position": [0.0, -0.5, -1.5],
-                        //"rotation": [45, 45, 0],
                         "scale": [0.5, 0.5,0.5],
                         "components": [
                             {
@@ -129,7 +127,7 @@
                             {
                                 "type": "Mesh Renderer",
                                 "mesh": "plane",
-                                "material": "grass"
+                                "material": "ground"
                             }
                         ]
                     }

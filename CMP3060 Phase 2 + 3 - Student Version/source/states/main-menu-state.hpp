@@ -50,23 +50,6 @@ class MainMenu : public our::State
         renderer.render(&world);
     }
 
-    // void onImmediateGui() override
-    // {
-    //     ImGui::Begin("Debugger");
-    //     auto entities = world.getEntities();
-
-    //     for (auto entity : entities)
-    //     {
-    //         auto component = entity->getComponent<our::CameraComponent>();
-    //         if (component)
-    //         {
-    //             ImGui::DragFloat3("Position", &component->getOwner()->localTransform.position.x);
-    //         }
-    //     }
-
-    //     ImGui::End();
-    // }
-
     void onDestroy() override
     {
         // Don't forget to destroy the renderer
