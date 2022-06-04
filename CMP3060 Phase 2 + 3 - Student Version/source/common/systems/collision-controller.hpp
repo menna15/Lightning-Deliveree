@@ -59,14 +59,22 @@ namespace our
                     if (collider1_type != collider2_type)
                     {                                
                         auto dist = abs(glm::distance(center1,center2));
+                        std::cout<<dist<<"\n";
                         if (dist <= collider_1->radius + collider_2->radius)
                         {   
-                            printf("/n exceed distance /n");
-                            if((collider1_type == "car" && collider2_type == "robot") || (collider1_type == "robot" && collider2_type == "car") ||
-                            (collider1_type == "buildings" && collider2_type == "robot") || (collider1_type == "robot" && collider2_type == "buildings"))
+                            printf("\nexceed distance \n");
+                            if((collider1_type == "car" && collider2_type == "robot"))
                             {
-                                printf("here1");
-                                // app->changeState("lose");
+                                // app->changeState("main-menu");
+                                world->markForRemoval(collider_1->getOwner());
+                            }
+                            else if(collider1_type == "robot" && collider2_type == "car")
+                            {
+                                // app->changeState("main-menu");
+                                // printf("here2");
+
+                                world->markForRemoval(collider_2->getOwner());
+
                             }
                             else if(collider1_type == "battery" && collider2_type == "robot")
                             {
