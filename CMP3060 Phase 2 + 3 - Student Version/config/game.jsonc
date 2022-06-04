@@ -12,7 +12,7 @@
     "scene": {
         "renderer":{
             // "sky": "assets/textures/sky.jpg",
-            "postprocess": "assets/shaders/postprocess/Sharpeness.frag"
+            // "postprocess": "assets/shaders/postprocess/Sharpeness.frag"
         },
         "assets":{
             "shaders":{
@@ -65,7 +65,7 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "grass",
-                    "sampler": "default"
+                    "sampler": "pixelated"
                 },
                 "building1":{
                     "type": "tinted",
@@ -412,9 +412,9 @@
                 ]
             },
             {
-                "position": [0, 9, 0],
+                "position": [0, 10, 0],
                 "rotation": [45, 45, 0],
-                "scale": [3, 3, 3],
+                "scale": [2, 2, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -423,10 +423,10 @@
                     },
                     {
                         "type": "Light",
-                        "lightType":"Directional",
+                        "lightType":"Spot",
                         "diffuse":[ 0.2, 0.2, 0.1],
-                        "specular":[ 0.5, 0.5, 1.0],
-                        "attenuation":[0, 0, 0],
+                        "specular":[ 0.3, 0.3, 0.3],
+                        "attenuation":[0.001, 0.001, 0.0001],
                         "cone_angles.inner":10,
                         "cone-angles.outer":50
                     },
