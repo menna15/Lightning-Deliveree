@@ -11,7 +11,7 @@ out vec4 frag_color;
 
 void main(){
     
-    float offset = 0.009;
+    float offset = 0.0015;
     float kernel[9];
     vec2 offsets[9];
     vec3 sampleTex[9];
