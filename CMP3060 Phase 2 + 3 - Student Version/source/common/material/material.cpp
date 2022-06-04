@@ -128,10 +128,10 @@ namespace our {
         TexturedMaterial::deserialize(data);
         if(!data.is_object()) return;
         // sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
-        albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
-        specular = AssetLoader<Texture2D>::get(data.value("specular", ""));
-        emissive = AssetLoader<Texture2D>::get(data.value("emissive", ""));
-        roughness = AssetLoader<Texture2D>::get(data.value("roughness", ""));
-        ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", ""));
+        albedo = AssetLoader<Texture2D>::get(data.value("albedo", "assets/textures/white.jpg"));
+        specular = AssetLoader<Texture2D>::get(data.value("specular", "assets/textures/white.jpg"));
+        emissive = AssetLoader<Texture2D>::get(data.value("emissive", "assets/textures/black.jpg"));
+        roughness = AssetLoader<Texture2D>::get(data.value("roughness", "assets/textures/black.jpg"));
+        ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", "assets/textures/white.jpg"));
     }
 }
