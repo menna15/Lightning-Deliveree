@@ -301,7 +301,8 @@ int our::Application::run(int run_for_frames)
 			ImGui::Begin("Hello", false,  ImGuiWindowFlags_NoBackground |
             
              ImGuiWindowFlags_NoMove |
-             ImGuiWindowFlags_NoDecoration);  
+             ImGuiWindowFlags_NoDecoration);
+             ImGui::SetWindowSize(ImVec2(win_config.size.x, win_config.size.y));  
             auto windowWidth = ImGui::GetWindowSize().x;
             ImGuiStyle* style =&ImGui::GetStyle();
             ImVec4* colors = style->Colors;
@@ -315,7 +316,7 @@ int our::Application::run(int run_for_frames)
 
             if (ImGui::Button("Start", ImVec2(200,100)))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 				{
-                    changeState("main");
+                    changeState("game");
                     //ImGui::EndMenu();
                 }
 
