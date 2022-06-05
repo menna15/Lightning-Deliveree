@@ -24,18 +24,20 @@ namespace our
     class collisionSystem
     {
         Application *app; // The application in which the state runs
+        our::EnergySystem energyController;
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
             this->app = app;
+            energyController.enter(this->app);
         }
 
         // This should be called every frame to update all entities have any sort of colliders
         void update(World *world, float deltaTime)
         {
-            our::EnergySystem energyController;
+
             vector<colliderComponent *> colliders;
             vector<EnergyComponent *> energies;
 
