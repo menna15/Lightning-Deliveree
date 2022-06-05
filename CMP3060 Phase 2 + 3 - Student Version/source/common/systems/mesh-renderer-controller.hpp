@@ -16,7 +16,7 @@ namespace our
     class MeshRendererControllerSystem
     {
         Application *app;     // The application in which the state runs
-        bool started = false; // Whether the game has started or not 
+        bool started = false; // Whether the game has started or not
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
@@ -32,8 +32,7 @@ namespace our
             // As soon as we find one, we break
             MeshRendererComponent *MeshRenderer = nullptr;
             MeshRendererControllerComponent *controller = nullptr;
-            // EnergySystem EnergyController;
-            // EnergyController.enter(app);
+
             for (auto entity : world->getEntities())
             {
                 MeshRenderer = entity->getComponent<MeshRendererComponent>();
@@ -70,30 +69,9 @@ namespace our
             energy *= 3;
             current_sensitivity += glm::vec3(0, 0, energy);
 
-            // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
-            // if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
-            //     current_sensitivity *= controller->speedupFactor;
-
             if (started)
             {
-                // We change the camera position based on the keys WASD/QE
-                // S & W moves the player back and forth
-                // if (app->getKeyboard().isPressed(GLFW_KEY_S) || app->getKeyboard().isPressed(GLFW_KEY_DOWN))
-                // {
-                // rotation.y = 0;
-                // position += front * (deltaTime * current_sensitivity.z);
-                // }
-                // if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
-                // {
-                // rotation.y = 0;
                 position -= front * (deltaTime * current_sensitivity.z);
-                // }
-
-                // Q & E moves the player up and down
-                // if (app->getKeyboard().isPressed(GLFW_KEY_Q))
-                //     position += up * (deltaTime * current_sensitivity.y);
-                // if (app->getKeyboard().isPressed(GLFW_KEY_E))
-                //     position -= up * (deltaTime * current_sensitivity.y);
 
                 // A & D moves the player left or right
                 if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
