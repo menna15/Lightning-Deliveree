@@ -10,8 +10,8 @@
     },
     "scene": {
         "renderer": {
-            "sky": "assets/textures/sky_night.jpg"
-            //"postprocess": "assets/shaders/postprocess/vignette.frag"
+            "sky": "assets/textures/sky_night.jpg",
+            "postprocess": "assets/shaders/postprocess/Sharpeness.frag"
         },
         "assets": {
             "shaders": {
@@ -810,11 +810,11 @@
                         "attenuation": [0.00095, 0.00095, 0.000095],
                         "cone_angles.inner": 20,
                         "cone-angles.outer": 50
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [10, 10, 10]
                     }
-                    // {
-                    //     "type": "Movement",
-                    //     "angularVelocity": [30, 30, 45]
-                    // }
                 ]
             }
         ]
