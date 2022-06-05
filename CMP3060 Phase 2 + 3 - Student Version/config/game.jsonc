@@ -9,6 +9,10 @@
         "fullscreen": false
     },
     "scene": {
+        "renderer": {
+            "sky": "assets/textures/sky_night.jpg"
+            //"postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
         "assets": {
             "shaders": {
                 "tinted": {

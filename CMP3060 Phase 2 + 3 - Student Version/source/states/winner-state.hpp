@@ -17,7 +17,6 @@ class Winstate : public our::State
     our::ForwardRenderer renderer;
     our::MeshRendererControllerSystem meshRendererController;
     our::MovementSystem movementSystem;
-    our::EnergySystem energySystem;
 
     void onInitialize() override
     {

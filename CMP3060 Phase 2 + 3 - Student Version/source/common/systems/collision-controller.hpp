@@ -6,7 +6,10 @@
 #include "../components/energy.hpp"
 #include "../systems/energy-controller.hpp"
 #include "../application.hpp"
-
+#include "../../states/play-state.hpp"
+#include "../../states/main-menu-state.hpp"
+#include "../../states/winner-state.hpp"
+#include "../../states/game-over-state.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
@@ -126,6 +129,8 @@ namespace our
                             // if the robot hits the end line, change to winner state
                             if (collider1_type == "robot" && collider2_type == "end-line")
                             {
+                                app->registerState<Winstate>("winner");
+
                                 app->changeState("winner");
                                 return;
                             }

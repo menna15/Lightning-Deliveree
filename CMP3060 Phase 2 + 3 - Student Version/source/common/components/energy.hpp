@@ -13,6 +13,7 @@ namespace our {
     class EnergyComponent : public Component {
     public:
         int id; //0, 1, 2, 3, 4, 5
+        bool active;
         static std::string getID() { return "Energy"; }
 
         // Reads linearVelocity & angularVelocity from the given json object
