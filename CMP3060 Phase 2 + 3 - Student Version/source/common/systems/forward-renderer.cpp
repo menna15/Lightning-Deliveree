@@ -197,7 +197,7 @@ namespace our
         glDepthMask(true);
 
         // If there is a postprocess material, bind the framebuffer
-        if (postprocessMaterial)
+        if (postprocessMaterial && effect)
         {
             // TODO: (Req 10) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
@@ -320,18 +320,22 @@ namespace our
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
                 light_material->shader->set("light_count", (int)lights.size());
 
+                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+
                 for (unsigned i = 0; i < lights.size(); i++)
                 {
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0);
 
                     std::string light_name = "lights[" + std::to_string(i) + "]";
 
-                    light_material->shader->set(light_name + ".position", light_position);
                     light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
                     light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
                     light_material->shader->set(light_name + ".specular", lights[i]->specular);
                     light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
+
 
                     switch (lights[i]->light_type)
                     {
@@ -339,10 +343,13 @@ namespace our
                         light_material->shader->set(light_name + ".direction", light_direction);
                         break;
                     case LIGHT_TYPE::SPOT:
+                        light_material->shader->set(light_name + ".position", light_position);
                         light_material->shader->set(light_name + ".direction", light_direction);
                         light_material->shader->set(light_name + ".cone_angles", lights[i]->cone_angles);
                         break;
                     case LIGHT_TYPE::POINT:
+                        light_material->shader->set(light_name + ".position", light_position);
+
                         break;
                     }
                 }
@@ -355,17 +362,18 @@ namespace our
             // Then we draw a mesh instance
             command.mesh->draw();
         }
-
         // If there is a postprocess material, apply postprocessing
-        if (postprocessMaterial)
-        {
-            // TODO: (Req 10) Return to the default framebuffer
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+        if(effect){
+            if (postprocessMaterial)
+            {
+                // TODO: (Req 10) Return to the default framebuffer
+                glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-            // TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
-            postprocessMaterial->setup();
-            glBindVertexArray(postProcessVertexArray);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+                // TODO: (Req 10) Setup the postprocess material and draw the fullscreen triangle
+                postprocessMaterial->setup();
+                glBindVertexArray(postProcessVertexArray);
+                glDrawArrays(GL_TRIANGLES, 0, 3);
+            }
         }
     }
 

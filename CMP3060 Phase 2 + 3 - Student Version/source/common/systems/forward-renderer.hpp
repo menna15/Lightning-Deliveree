@@ -53,7 +53,7 @@ namespace our
         void destroy();
         // This function should be called every frame to draw the given world
         void render(World* world);
-
+        bool effect = false;
 
     };
 

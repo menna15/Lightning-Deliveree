@@ -1,7 +1,7 @@
 #pragma once
 
 #include <application.hpp>
-
+// #include <chrono>
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/mesh-renderer-controller.hpp>
@@ -21,7 +21,8 @@ class Playstate : public our::State
     our::MovementSystem movementSystem;
     our::EnergySystem energySystem;
     our::collisionSystem collision;
-
+    bool entered;
+    int time = 0;
     void onInitialize() override
     {
         std::string config_path = "config/game.jsonc";
@@ -62,14 +63,32 @@ class Playstate : public our::State
 
     void onDraw(double deltaTime) override
     {
+        auto start = std::chrono::high_resolution_clock::now();
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         int energy = energySystem.getEnergy(&world);
         meshRendererController.update(&world, (float)deltaTime, energy);
-        collision.update(&world, (float)deltaTime);
+        bool hit = collision.update(&world, (float)deltaTime);
         world.deleteMarkedEntities();
         // And finally we use the renderer system to draw the scene
-        renderer.render(&world);
+        if (hit){
+            renderer.effect = true; 
+            hit= false; 
+            time = 1;
+            }
+
+        // auto finish = std::chrono::high_resolution_clock::now();
+        // std::chrono::duration<double, std::milli> elapsed = finish - start;
+        if(renderer.effect && time == 60)
+        {
+          std::cout << "here" << std::endl;
+          renderer.effect = false; 
+          time = 0;
+        }
+        else {
+            time += 1;
+        }
+        renderer.render(&world );
     }
 
     void onDestroy() override

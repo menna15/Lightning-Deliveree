@@ -5,6 +5,7 @@
 #include "../components/collider.hpp"
 #include "../components/energy.hpp"
 #include "../systems/energy-controller.hpp"
+#include "../systems/forward-renderer.hpp"
 #include "../application.hpp"
 #include "../../states/play-state.hpp"
 #include "../../states/main-menu-state.hpp"
@@ -16,6 +17,7 @@
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <vector>
 #include <iostream>
+#include <chrono>
 using namespace std;
 namespace our
 {
@@ -28,7 +30,6 @@ namespace our
     {
         Application *app; // The application in which the state runs
         our::EnergySystem energyController;
-
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
@@ -38,9 +39,8 @@ namespace our
         }
 
         // This should be called every frame to update all entities have any sort of colliders
-        void update(World *world, float deltaTime)
+        bool update(World *world, float deltaTime )
         {
-
             vector<colliderComponent *> colliders;
             vector<EnergyComponent *> energies;
 
@@ -94,13 +94,14 @@ namespace our
                             collider1_max.y >= collider2_min.y && collider1_min.y <= collider2_max.y &&
                             collider1_max.z >= collider2_min.z && collider1_min.z <= collider2_max.z)
                         {
-
+                            
                             // if the robot hits a battery, remove the battery and charge the robot
                             if (collider1_type == "robot" && collider2_type == "battery")
                             {
                                 world->markForRemoval(collider_2->getOwner());
                                 energyController.update(world, EnergyActionType::INC);
-                                return;
+
+                                return false;
                             }
 
                             // if the robot hits a car, remove the car and decrease the robot's energy
@@ -108,7 +109,8 @@ namespace our
                             {
                                 world->markForRemoval(collider_2->getOwner());
                                 energyController.update(world, EnergyActionType::DEC);
-                                return;
+
+                                return false;
                             }
 
                             // if the robot hits a building, change the position of the robot to the middle of the road and reduce its energy
@@ -121,7 +123,7 @@ namespace our
                                 collider_1->getOwner()->localTransform.rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
                                 energyController.update(world, EnergyActionType::DEC);
-                                return;
+                                return true;
                             }
 
                             // if the robot hits the end line, change to winner state
@@ -130,12 +132,13 @@ namespace our
                                 app->registerState<Winstate>("winner");
 
                                 app->changeState("winner");
-                                return;
+                                return false;
                             }
                         }
                     }
                 }
             }
+            return false;
         }
     };
 }
