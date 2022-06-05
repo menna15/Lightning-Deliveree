@@ -1,6 +1,8 @@
 team_13.zip
 build/win32/Debug/ZERO_CHECK/ZERO_CHECK.tlog/ZERO_CHECK.lastbuildstate
 .vscode/settings.json
+screenshots/*
+expected/*
 build/ALL_BUILD.vcxproj
 build/ALL_BUILD.vcxproj.filters
 build/cmake_install.cmake
