@@ -68,7 +68,7 @@ class Playstate : public our::State
     {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
-        energySystem.update(&world, (float)deltaTime);
+        //energySystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
         collision.update(&world, (float)deltaTime);
         world.deleteMarkedEntities();

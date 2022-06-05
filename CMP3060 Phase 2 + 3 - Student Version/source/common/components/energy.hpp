@@ -12,8 +12,7 @@ namespace our {
     // For a more complex example of how to use the ECS framework, see "free-camera-controller.hpp"
     class EnergyComponent : public Component {
     public:
-        float scale;
-        // The ID of this component type is "Movement"
+        int id; //0, 1, 2, 3, 4, 5
         static std::string getID() { return "Energy"; }
 
         // Reads linearVelocity & angularVelocity from the given json object

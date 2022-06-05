@@ -68,22 +68,7 @@
                     "sampler": "default"
                 },
                 
-                "energy":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": false
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "energy",
-                    "sampler": "default"
                 
-                },
                 "building1": {
                     "type": "tinted",
                     "shader": "tinted",
@@ -186,6 +171,29 @@
                     "texture": "battery",
                     "sampler": "default"
                 },
+                
+                "battery_bar":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": false
+                        },
+                        "blending":{
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 1],
+                    "texture": "battery_bar",
+                    "sampler": "default"
+                },
                 "bar":{
                     "type": "textured",
                     "shader": "textured",
@@ -208,7 +216,7 @@
                     "texture": "bar",
                     "sampler": "default"
                 },
-                "battery_bar":{
+                "energy":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -217,192 +225,16 @@
                         },
                         "depthTesting":{
                             "enabled": false
-                        },
-                        "blending":{
-                            "enabled": true,
-                            "sourceFactor": "GL_SRC_ALPHA",
-                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
-                        },
-                        "depthMask": false
+                        }
                     },
-                    "transparent": true,
                     "tint": [1, 1, 1, 1],
-                    "texture": "battery_bar",
+                    "texture": "energy",
                     "sampler": "default"
                 }
-
             }
         },
         "world": [
-            {
-                "name": "robot",
-                "position": [0, -0.9, -15],
-                "scale": [0.8, 0.8, 0.8],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "car",
-                        "material": "car"
-                    },
-                    {
-                        "type": "Mesh Renderer Controller"
-                    },
-                    {
-                        "type": "Collider",
-                        "radius": 0.8
-                    }
-                ],
-                "children": [
-                    {
-                        "position": [0, 2, -5],
-                        "rotation": [-15, 180, 0],
-                        "components": [
-                            {
-                                "type": "Camera"
-                            }
-                        ],
-                        "children": [
-                            {
-                                "position": [9, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [8.65, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [8.3, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-
-                            {
-                                "position": [7.95, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [7.6, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [7.25, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.15, 0.35, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "energy"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [8.125, 5, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [1.185, 0.60, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "bar"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            },
-                            {
-                                "position": [6.58, 5.1, -6],
-                                //"rotation": [-15, 180, 0],
-                                //"rotation": [-90, 0, 0],
-                                "scale": [0.78, 0.69, 1],
-                                "components": [
-                                    {
-                                        "type": "Mesh Renderer",
-                                        "mesh": "plane",
-                                        "material": "battery_bar"
-                                    }
-                                    // ,
-                                    // {
-                                    //     "type": "Energy"
-                                    // }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
+           
             {
                 "name": "car",
                 "position": [1.5, -0.9, 0],
@@ -578,7 +410,7 @@
                 ]
             },
             {
-                "position": [10, 9.1, -10],
+                "position": [10, 9.1, -5],
                 "scale": [6, 10, 5],
                 "components": [
                     {
@@ -622,7 +454,7 @@
                 ]
             },
             {
-                "position": [-10, 9.1, -10],
+                "position": [-10, 9.1, -5],
                 "scale": [6, 10, 5],
                 "components": [
                     {
@@ -711,6 +543,185 @@
                     {
                         "type": "Movement",
                         "angularVelocity": [30, 0, 45]
+                    }
+                ]
+            },
+            {
+                "name": "robot",
+                "position": [0, -0.9, -15],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Mesh Renderer Controller"
+                    },
+                    {
+                        "type": "Collider",
+                        "radius": 0.8
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [0, 2, -3],
+                        "rotation": [-15, 180, 0],
+                        "components": [
+                            {
+                                "type": "Camera"
+                            }
+                        ],
+                        "children": [
+                            
+                                    {
+                                        "position": [9, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                             ,
+                                             {
+                                                "type": "Energy",
+                                                "id":1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "position": [8.65, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                            ,
+                                            {
+                                               "type": "Energy",
+                                               "id":2
+                                           }
+                                        ]
+                                    },
+                                    {
+                                        "position": [8.3, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                            ,
+                                             {
+                                                "type": "Energy",
+                                                "id":3
+                                            }
+                                        ]
+                                    },
+        
+                                    {
+                                        "position": [7.95, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                            ,
+                                            {
+                                               "type": "Energy",
+                                               "id":4
+                                           }
+                                        ]
+                                    },
+                                    {
+                                        "position": [7.6, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                            ,
+                                            {
+                                               "type": "Energy",
+                                               "id":5
+                                           }
+                                        ]
+                                    },
+                                    {
+                                        "position": [7.25, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.15, 0.35, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "energy"
+                                            }
+                                            ,
+                                             {
+                                                "type": "Energy",
+                                                "id":6
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "position": [8.125, 5, -6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [1.185, 0.60, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "bar"
+                                            }
+                                            // ,
+                                            // {
+                                            //     "type": "Energy"
+                                            // }
+                                        ]
+                                    },
+                                    {
+                                        "position": [6.58, 5.1,-6],
+                                        //"rotation": [-15, 180, 0],
+                                        //"rotation": [-90, 0, 0],
+                                        "scale": [0.78, 0.69, 1],
+                                        "components": [
+                                            {
+                                                "type": "Mesh Renderer",
+                                                "mesh": "plane",
+                                                "material": "battery_bar"
+                                            }
+                                            // ,
+                                            // {
+                                            //     "type": "Energy"
+                                            // }
+                                        ]
+                                    }
+                                
+                            
+                            
+                        ]
                     }
                 ]
             }

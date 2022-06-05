@@ -5,6 +5,6 @@
 namespace our {
     void EnergyComponent::deserialize(const nlohmann::json& data){
         if(!data.is_object()) return;
-        scale= 1.0f;
+        id = data.value("id", 1);
     }
 }

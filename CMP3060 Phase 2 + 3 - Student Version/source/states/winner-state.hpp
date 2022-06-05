@@ -45,7 +45,7 @@ class Winstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         meshRendererController.update(&world, (float)deltaTime);
-        energySystem.update(&world, (float)deltaTime);
+        //energySystem.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
     }
