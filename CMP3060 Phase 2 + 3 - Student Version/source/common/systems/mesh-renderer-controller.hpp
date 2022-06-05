@@ -3,7 +3,6 @@
 #include "../ecs/world.hpp"
 #include "../components/mesh-renderer.hpp"
 #include "../components/mesh-renderer-controller.hpp"
-
 #include "../application.hpp"
 
 #include <glm/glm.hpp>
@@ -18,6 +17,7 @@ namespace our
     {
         Application *app;     // The application in which the state runs
         bool started = false; // Whether the game has started or not
+        int energy = 6; // indecats the energy to control speed with 
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
@@ -27,12 +27,14 @@ namespace our
         }
 
         // This should be called every frame to update all entities containing a MeshRendererController
-        void update(World *world, float deltaTime)
+        void update(World *world, float deltaTime, int energy)
         {
             // First of all, we search for an entity containing both a MeshRendererComponent and a MeshRendererController
             // As soon as we find one, we break
             MeshRendererComponent *MeshRenderer = nullptr;
             MeshRendererControllerComponent *controller = nullptr;
+            // EnergySystem EnergyController;
+            // EnergyController.enter(app);
             for (auto entity : world->getEntities())
             {
                 MeshRenderer = entity->getComponent<MeshRendererComponent>();
@@ -66,6 +68,8 @@ namespace our
             }
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
+            energy *= 3;
+            current_sensitivity += glm::vec3(energy, energy, energy);
 
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             // if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
