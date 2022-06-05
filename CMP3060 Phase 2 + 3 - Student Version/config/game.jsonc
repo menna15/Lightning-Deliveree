@@ -841,6 +841,38 @@
             },
             {
                 "name": "battery",
+                "position": [2, -0.9, 210],
+                "scale": [0.7, 0.4, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Collider"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name": "battery light",
+                "position": [-2, 2, 210],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "Point",
+                        "specular": [0, 0.7, 1.0],
+                        "diffuse": [0, 0.7, 1.0],
+                        "attenuation": [0.02, 0.02, 0.002]
+                    }
+                ]
+            },
+            {
+                "name": "battery",
                 "position": [2, -0.9, 240],
                 "scale": [0.7, 0.4, 0.7],
                 "components": [
