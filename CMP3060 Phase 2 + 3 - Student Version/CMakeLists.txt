@@ -110,6 +110,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/bin)
 
 set(STATES_SOURCES
+        source/states/main-menu-state.hpp
         source/states/play-state.hpp
         source/states/mesh-test-state.hpp
         source/states/transform-test-state.hpp

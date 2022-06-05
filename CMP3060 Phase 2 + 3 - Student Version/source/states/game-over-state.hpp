@@ -48,7 +48,7 @@ class GameOver : public our::State
             world.deserialize(config["world"]);
         }
         // We initialize the mesh renderer controller system since it needs a pointer to the app
-        meshRendererController.enter(getApp());
+        // meshRendererController.enter(getApp());
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
@@ -58,7 +58,7 @@ class GameOver : public our::State
     {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
-        meshRendererController.update(&world, (float)deltaTime);
+        // meshRendererController.update(&world, (float)deltaTime);
         // energySystem.update(&world, (float)deltaTime);
         //  And finally we use the renderer system to draw the scene
         renderer.render(&world);
@@ -69,7 +69,7 @@ class GameOver : public our::State
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the meshRenderer controller system to make sure that the mouse is unlocked
-        meshRendererController.exit();
+        // meshRendererController.exit();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
     }
