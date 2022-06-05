@@ -6,7 +6,7 @@
             "width": 1280,
             "height": 720
         },
-        "fullscreen": true
+        "fullscreen": false
     },
     "scene": {
         "assets": {
@@ -35,7 +35,9 @@
                 "energy_yellow": "assets/textures/yellow.jpeg",
                 "battery_bar": "assets/textures/battery2.png",
                 "bar": "assets/textures/barborder.png",
-                "building1": "assets/textures/build.jpeg"
+                "building1": "assets/textures/build.jpeg",
+                "white":"assets/textures/white.jpg",
+                "black":"assets/textures/black.jpg"
             },
             "meshes": {
                 "plane": "assets/models/plane.obj",
@@ -62,9 +64,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "floor",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "floor",
+                    "sampler": "default",
+                    "specular":"floor",
+                    "emissive":"black",
+                    "ambient_occlusion":"floor",
+                    "roughness":"black"
                 },
                 "building1": {
                     "type": "lighted",
@@ -77,9 +83,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "building1",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "building1",
+                    "sampler": "default",
+                    "specular":"building1",
+                    "emissive":"black",
+                    "ambient_occlusion":"building1",
+                    "roughness":"black"
                 },
                 "building2": {
                     "type": "tinted",
@@ -105,9 +115,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "start",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "start",
+                    "sampler": "default",
+                    "specular":"start",
+                    "emissive":"black",
+                    "ambient_occlusion":"start",
+                    "roughness":"black"
                 },
                 "road": {
                     "type": "lighted",
@@ -120,9 +134,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "road",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "road",
+                    "sampler": "default",
+                    "specular":"road",
+                    "emissive":"black",
+                    "ambient_occlusion":"road",
+                    "roughness":"black"
                 },
                 "transparent": {
                     "type": "tinted",
@@ -155,9 +173,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "car",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "car",
+                    "sampler": "default",
+                    "specular":"car",
+                    "emissive":"black",
+                    "ambient_occlusion":"car",
+                    "roughness":"black"
                 },
                 "moon": {
                     "type": "lighted",
@@ -170,10 +192,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "moon",
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "moon",
                     "sampler": "default",
-                    "roughness": "roughness"
+                    "specular":"moon",
+                    "emissive":"black",
+                    "ambient_occlusion":"moon",
+                    "roughness":"black"
                 },
                 "battery": {
                     "type": "lighted",
@@ -186,9 +211,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    "albedo": "battery",
+                    "sampler": "default",
+                    "specular":"battery",
+                    "emissive":"battery",
+                    "ambient_occlusion":"battery",
+                    "roughness":"black"
                 },
                 "battery_bar": {
                     "type": "textured",
@@ -274,6 +303,26 @@
                     },
                     {
                         "type": "Collider"
+                    },
+                    {
+                        "type": "Light",
+                        "lightType": "Spot",
+                        "direction":[-1 ,0,0],
+                        "diffuse": [ 1 , 1, 1],
+                        "specular": [ 1 , 1, 1],
+                        "attenuation": [0.0095, 0.0095, 0.00095],
+                        "cone_angles.inner": 20,
+                        "cone-angles.outer": 50
+                    },
+                    {
+                        "type": "Light",
+                        "lightType": "Spot",
+                        "direction":[0,0,-1],
+                        "diffuse": [ 1 , 1, 1],
+                        "specular": [ 1 , 1, 1],
+                        "attenuation": [0.0095, 0.0095, 0.00095],
+                        "cone_angles.inner": 20,
+                        "cone-angles.outer": 50
                     }
                 ],
                 "children": [
@@ -732,7 +781,7 @@
                 ]
             },
             {
-                "position": [0, 11, 20],
+                "position": [0, 18, 18],
                 "rotation": [45, 45, 0],
                 "scale": [1, 1, 1],
                 "components": [
@@ -743,17 +792,17 @@
                     },
                     {
                         "type": "Light",
-                        "lightType": "Spot",
-                        "diffuse": [0.5, 1, 1],
-                        "specular": [0.5, 1, 1],
+                        "lightType": "Directional",
+                        "diffuse": [ 0.53725 , 0.811764, 0.94117647],
+                        "specular": [ 0.53725 , 0.811764, 0.94117647],
                         "attenuation": [0.00095, 0.00095, 0.000095],
                         "cone_angles.inner": 20,
-                        "cone-angles.outer": 100
-                    },
-                    {
-                        "type": "Movement",
-                        "angularVelocity": [30, 0, 45]
+                        "cone-angles.outer": 50
                     }
+                    // {
+                    //     "type": "Movement",
+                    //     "angularVelocity": [30, 30, 45]
+                    // }
                 ]
             }
         ]
