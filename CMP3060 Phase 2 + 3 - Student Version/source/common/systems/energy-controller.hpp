@@ -3,7 +3,10 @@
 #include "../ecs/world.hpp"
 #include "../components/movement.hpp"
 #include "../components/energy.hpp"
-
+#include "../../states/play-state.hpp"
+#include "../../states/main-menu-state.hpp"
+#include "../../states/winner-state.hpp"
+#include "../../states/game-over-state.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
@@ -123,8 +126,11 @@ namespace our
                          (energy->id == 1 && action == EnergyActionType::DEC && entity->localTransform.scale.x > scale)))
                     {
                         entity->localTransform.scale.x = scale;
+                        if (action == EnergyActionType::DEC){
+                        app->registerState<GameOver>("game-over");
+
                         app->changeState("game-over");
-                        
+                        }
                         return;
                     }
                 }

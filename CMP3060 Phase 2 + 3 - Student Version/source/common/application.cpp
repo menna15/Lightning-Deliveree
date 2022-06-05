@@ -26,6 +26,10 @@
 #endif
 
 #include "texture/screenshot.hpp"
+#include "../states/play-state.hpp"
+#include "../states/main-menu-state.hpp"
+#include "../states/winner-state.hpp"
+#include "../states/game-over-state.hpp"
 // using namespace irrklang;
 
 // ISoundEngine *SoundEngine = createIrrKlangDevice();
@@ -290,10 +294,7 @@ int our::Application::run(int run_for_frames)
 
         glfwPollEvents(); // Read all the user events and call relevant callbacks.
 
-        if ((currentState == states["winner"] || currentState == states["game-over"]) && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
-        {
-            changeState("main-menu");
-        }
+        
 
         // Start a new ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -321,7 +322,9 @@ int our::Application::run(int run_for_frames)
 
             if (ImGui::Button("Start", ImVec2(200, 100)) || keyboard.justPressed(GLFW_KEY_ENTER)) // Buttons return true when clicked (most widgets return true when edited/activated)
             {
+                this->registerState<Playstate>("game");
                 changeState("game");
+                
             }
 
             // if (ImGui::Button("Options", ImVec2(200, 100)))
@@ -337,6 +340,11 @@ int our::Application::run(int run_for_frames)
 
             ImGui::PopFont();
             ImGui::End();
+        }
+        else if((currentState == states["winner"] || currentState == states["game-over"]) && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
+        {
+            this->registerState<MainMenu>("main-menu");
+            changeState("main-menu");
         }
         // if(currentState) currentState->onImmediateGui(); // Call to run any required Immediate GUI.
 
@@ -412,7 +420,7 @@ int our::Application::run(int run_for_frames)
         // Update the keyboard and mouse data
         keyboard.update();
         mouse.update();
-
+        
         // If a scene change was requested, apply it
         while (nextState)
         {
