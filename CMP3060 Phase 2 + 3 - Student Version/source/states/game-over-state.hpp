@@ -32,11 +32,12 @@ class GameOver : public our::State
         }
 
         // Read the file into a json object then close the file
-        nlohmann::json game_config = nlohmann::json::parse(file_in, nullptr, true, true);
+        nlohmann::json fileConfigs = nlohmann::json::parse(file_in, nullptr, true, true);
         file_in.close();
 
         // First of all, we get the scene configuration from the app config
-        auto &config = getApp()->getConfig()["scene"];
+        auto &config = fileConfigs["scene"];
+
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
@@ -59,27 +60,10 @@ class GameOver : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         meshRendererController.update(&world, (float)deltaTime);
-        //energySystem.update(&world, (float)deltaTime);
-        // And finally we use the renderer system to draw the scene
+        // energySystem.update(&world, (float)deltaTime);
+        //  And finally we use the renderer system to draw the scene
         renderer.render(&world);
     }
-
-    // void onImmediateGui() override
-    // {
-    //     ImGui::Begin("Debugger");
-    //     auto entities = world.getEntities();
-
-    //     for (auto entity : entities)
-    //     {
-    //         auto component = entity->getComponent<our::CameraComponent>();
-    //         if (component)
-    //         {
-    //             ImGui::DragFloat3("Position", &component->getOwner()->localTransform.position.x);
-    //         }
-    //     }
-
-    //     ImGui::End();
-    // }
 
     void onDestroy() override
     {

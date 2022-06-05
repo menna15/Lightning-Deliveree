@@ -36,13 +36,11 @@ class Playstate : public our::State
         }
 
         // Read the file into a json object then close the file
-        nlohmann::json game_config = nlohmann::json::parse(file_in, nullptr, true, true);
+        nlohmann::json fileConfigs = nlohmann::json::parse(file_in, nullptr, true, true);
         file_in.close();
 
         // First of all, we get the scene configuration from the app config
-        auto &config = game_config["scene"];
-
-        // auto &config = getApp()->getConfig()["scene"];
+        auto &config = fileConfigs["scene"];
 
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
@@ -66,7 +64,7 @@ class Playstate : public our::State
     {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
-        //energySystem.update(&world, (float)deltaTime);
+        // energySystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
         collision.update(&world, (float)deltaTime);
         world.deleteMarkedEntities();

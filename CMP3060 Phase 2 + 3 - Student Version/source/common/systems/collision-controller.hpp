@@ -48,10 +48,6 @@ namespace our
                 {
                     colliders.emplace_back(collider);
                 }
-            }
-            for (auto entity : world->getEntities())
-            {
-
                 if (auto energy = entity->getComponent<EnergyComponent>(); energy)
                 {
                     energies.emplace_back(energy);
@@ -124,6 +120,13 @@ namespace our
                                 collider_1->getOwner()->localTransform.rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
                                 energyController.update(world, EnergyActionType::DEC);
+                                return;
+                            }
+
+                            // if the robot hits the end line, change to winner state
+                            if (collider1_type == "robot" && collider2_type == "end-line")
+                            {
+                                app->changeState("winner");
                                 return;
                             }
                         }
