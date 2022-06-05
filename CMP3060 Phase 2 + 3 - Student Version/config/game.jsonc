@@ -40,6 +40,7 @@
                 "battery_bar": "assets/textures/battery2.png",
                 "bar": "assets/textures/barborder.png",
                 "building1": "assets/textures/build.jpeg",
+                "building2": "assets/textures/building2.jpg",
                 "white":"assets/textures/white.jpg",
                 "black":"assets/textures/black.jpg"
             },
@@ -49,6 +50,7 @@
                 "car": "assets/models/car.obj",
                 "moon": "assets/models/sphere.obj",
                 "cube": "assets/models/cube.obj"
+                
             },
             "samplers": {
                 "default": {},
@@ -96,8 +98,8 @@
                     "roughness":"black"
                 },
                 "building2": {
-                    "type": "tinted",
-                    "shader": "tinted",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -106,7 +108,13 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 0.529, 0.141, 1]
+                    // "tint": [1, 0.529, 0.141, 1]
+                    "albedo": "building2",
+                    "sampler": "default",
+                    "specular":"building2",
+                    "emissive":"black",
+                    "ambient_occlusion":"building2",
+                    "roughness":"black"
                 },
                 "start": {
                     "type": "lighted",
