@@ -294,7 +294,17 @@ int our::Application::run(int run_for_frames)
 
         glfwPollEvents(); // Read all the user events and call relevant callbacks.
 
-        
+        if (currentState == states["winner"] || currentState == states["game-over"])
+        {
+            if (this->getKeyboard().isPressed(GLFW_KEY_ENTER))
+            {
+                changeState("main-menu");
+            }
+            else if (this->getKeyboard().isPressed(GLFW_KEY_ESCAPE))
+            {
+                break;
+            }
+        }
 
         // Start a new ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -324,7 +334,6 @@ int our::Application::run(int run_for_frames)
             {
                 this->registerState<Playstate>("game");
                 changeState("game");
-                
             }
 
             // if (ImGui::Button("Options", ImVec2(200, 100)))
@@ -341,7 +350,7 @@ int our::Application::run(int run_for_frames)
             ImGui::PopFont();
             ImGui::End();
         }
-        else if((currentState == states["winner"] || currentState == states["game-over"]) && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
+        else if ((currentState == states["winner"] || currentState == states["game-over"]) && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
         {
             this->registerState<MainMenu>("main-menu");
             changeState("main-menu");
@@ -420,7 +429,7 @@ int our::Application::run(int run_for_frames)
         // Update the keyboard and mouse data
         keyboard.update();
         mouse.update();
-        
+
         // If a scene change was requested, apply it
         while (nextState)
         {
