@@ -240,6 +240,11 @@ namespace our
                     light_material->shader->set(light_name + ".specular", lights[i]->specular);
                     light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
 
+                    light_material->shader->set("sky.top", glm::vec3(0.3, 0.6,1.0));
+                    light_material->shader->set("sky.middle", glm::vec3(0.3, 0.3,0.3));
+                    light_material->shader->set("sky.bottom", glm::vec3(1, 1, 1));
+
+
                     switch (lights[i]->light_type)
                     {
                     case LIGHT_TYPE::DIRECTIONAL:
