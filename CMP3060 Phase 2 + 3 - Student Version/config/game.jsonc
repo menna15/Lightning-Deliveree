@@ -124,6 +124,26 @@
                     "texture": "road",
                     "sampler": "default"
                 },
+                "transparent": {
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": false
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 0]
+                },
                 "car": {
                     "type": "lighted",
                     "shader": "lighted",
@@ -549,6 +569,21 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "start"
+                    }
+                ]
+            },
+            {
+                "name": "end-line",
+                "position": [0, 1, 40],
+                "scale": [3, 2, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "transparent"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
