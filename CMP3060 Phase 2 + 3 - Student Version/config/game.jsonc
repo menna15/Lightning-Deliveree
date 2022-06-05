@@ -805,7 +805,7 @@
                     },
                     {
                         "type": "Movement",
-                        "angularVelocity": [10, 10, 10]
+                        "angularVelocity": [15, 15, 15]
                     }
                 ]
             }
