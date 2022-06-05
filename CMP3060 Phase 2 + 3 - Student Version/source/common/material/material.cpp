@@ -75,8 +75,8 @@ namespace our
     void LightMaterial::setup() const
     {
 
-        TexturedMaterial::setup();
-        // Material::setup();
+        // TexturedMaterial::setup();
+        Material::setup();
 
         if (specular != nullptr)
         {
@@ -125,27 +125,27 @@ namespace our
         if (albedo != nullptr)
         {
             // select an active texture unit -> 5
-            glActiveTexture(GL_TEXTURE5);
+            glActiveTexture(GL_TEXTURE0);
             // bind the texture to unit 5
             albedo->bind();
             // bind the sampler to unit 5
-            sampler->bind(5);
-            shader->set("material.albedo", 5);
+            sampler->bind(0);
+            shader->set("material.albedo", 0);
         }
     }
 
     // This function read the material data from a json object
     void LightMaterial::deserialize(const nlohmann::json &data)
     {
-        // Material::deserialize(data);
-        TexturedMaterial::deserialize(data);
+        Material::deserialize(data);
+        // TexturedMaterial::deserialize(data);
         if (!data.is_object())
             return;
-        // sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
-        albedo = AssetLoader<Texture2D>::get(data.value("albedo", "assets/textures/white.jpg"));
-        specular = AssetLoader<Texture2D>::get(data.value("specular", "assets/textures/white.jpg"));
-        emissive = AssetLoader<Texture2D>::get(data.value("emissive", "assets/textures/black.jpg"));
-        roughness = AssetLoader<Texture2D>::get(data.value("roughness", "assets/textures/black.jpg"));
-        ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", "assets/textures/white.jpg"));
+        sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
+        albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
+        specular = AssetLoader<Texture2D>::get(data.value("specular", ""));
+        emissive = AssetLoader<Texture2D>::get(data.value("emissive", ""));
+        roughness = AssetLoader<Texture2D>::get(data.value("roughness", ""));
+        ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", ""));
     }
 }

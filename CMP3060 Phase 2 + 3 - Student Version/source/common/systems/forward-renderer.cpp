@@ -228,10 +228,14 @@ namespace our
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
                 light_material->shader->set("light_count", (int)lights.size());
 
+                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+
                 for (unsigned i = 0; i < lights.size(); i++)
                 {
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0);
 
                     std::string light_name = "lights[" + std::to_string(i) + "]";
 
@@ -239,10 +243,6 @@ namespace our
                     light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
                     light_material->shader->set(light_name + ".specular", lights[i]->specular);
                     light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
-
-                    light_material->shader->set("sky.top", glm::vec3(0.3, 0.6,1.0));
-                    light_material->shader->set("sky.middle", glm::vec3(0.3, 0.3,0.3));
-                    light_material->shader->set("sky.bottom", glm::vec3(1, 1, 1));
 
 
                     switch (lights[i]->light_type)

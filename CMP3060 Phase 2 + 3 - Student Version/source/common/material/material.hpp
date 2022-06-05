@@ -54,10 +54,10 @@ namespace our {
     };
 
     // light material will inherit from the  material and define all texture types for the light material.
-    class LightMaterial : public TexturedMaterial {
+    class LightMaterial : public Material {
     public:
         Texture2D  *albedo, *specular , *emissive , *roughness , *ambient_occlusion;
-        // Sampler* sampler;
+        Sampler* sampler;
 
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;

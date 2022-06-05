@@ -22,6 +22,7 @@ namespace our {
 
         glm::vec3 diffuse = glm::vec3(0, 0, 0); 
         glm::vec3 specular = glm::vec3(0, 0, 0); 
+        glm::vec3 direction = glm::vec3(0, 0, 0); 
         glm::vec3 attenuation = glm::vec3(0.0f, 0.0f, 0.0f); // indicates the intensity of the light
         // glm::vec3 direction = glm::vec3(0.0f, 0.0f, 0.0f);  //for (Directional and Spot)
         glm::vec2 cone_angles = glm::vec2(0.0f, 0.0f);  // for spot light
