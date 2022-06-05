@@ -611,6 +611,7 @@
                 ]
             },
             {
+                "name": "building",
                 "position": [-10, 9.1, -10],
                 "scale": [6, 10, 5],
                 "components": [
