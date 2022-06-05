@@ -25,7 +25,7 @@
                 }
             },
             "textures": {
-                "grass": "assets/textures/grass_ground_d.jpg",
+                "grass": "assets/textures/floor2.jpg",
                 "start": "assets/textures/start.png",
                 "road": "assets/textures/road.jpg",
                 "car": "assets/textures/car.jpg",
@@ -34,7 +34,8 @@
                 "energy": "assets/textures/red.jpeg",
                 "energy_yellow": "assets/textures/yellow.jpeg",
                 "battery_bar": "assets/textures/battery2.png",
-                "bar": "assets/textures/barborder.png"
+                "bar": "assets/textures/barborder.png",
+                "building1":"assets/textures/build.jpeg"
             },
             "meshes": {
                 "plane": "assets/models/plane.obj",
@@ -66,8 +67,8 @@
                     "sampler": "default"
                 },
                 "building1": {
-                    "type": "tinted",
-                    "shader": "tinted",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -76,7 +77,9 @@
                             "enabled": true
                         }
                     },
-                    "tint": [0.882, 0.549, 0.498, 1]
+                    "tint": [1, 1, 1, 1],
+                    "texture": "building1",
+                    "sampler": "default"
                 },
                 "building2": {
                     "type": "tinted",

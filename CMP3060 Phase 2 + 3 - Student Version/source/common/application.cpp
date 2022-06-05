@@ -521,7 +521,7 @@ void our::Application::StyleColorsCustom(ImGuiStyle *dst)
     
     style->ItemSpacing=ImVec2(10.0f,50.0f);
     ImGuiIO* inOut=&ImGui::GetIO();
-    style->WindowPadding= ImVec2(50.0f,50.0f);
+    style->WindowPadding= ImVec2(20.0f,10.0f);
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\Blazed.ttf", 24.0f);
 
     // inOut->Fonts->AddFontFromFileTTF("E:\\DonyaAll\\CMP2023-Y3\\Second Sem\\Graphics\\Project\\Graphics\\Graphics-Project\\CMP3060 Phase 2 + 3 - Student Version\\assets\\fonts\\americorps.ttf", 14.0f);
