@@ -24,18 +24,20 @@ namespace our
     class collisionSystem
     {
         Application *app; // The application in which the state runs
+        our::EnergySystem energyController;
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
             this->app = app;
+            energyController.enter(this->app);
         }
 
         // This should be called every frame to update all entities have any sort of colliders
         void update(World *world, float deltaTime)
         {
-            our::EnergySystem energyController;
+
             vector<colliderComponent *> colliders;
             vector<EnergyComponent *> energies;
 
@@ -46,10 +48,6 @@ namespace our
                 {
                     colliders.emplace_back(collider);
                 }
-            }
-            for (auto entity : world->getEntities())
-            {
-
                 if (auto energy = entity->getComponent<EnergyComponent>(); energy)
                 {
                     energies.emplace_back(energy);
@@ -122,6 +120,13 @@ namespace our
                                 collider_1->getOwner()->localTransform.rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
                                 energyController.update(world, EnergyActionType::DEC);
+                                return;
+                            }
+
+                            // if the robot hits the end line, change to winner state
+                            if (collider1_type == "robot" && collider2_type == "end-line")
+                            {
+                                app->changeState("winner");
                                 return;
                             }
                         }
