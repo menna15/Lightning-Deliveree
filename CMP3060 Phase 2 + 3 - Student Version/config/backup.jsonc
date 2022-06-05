@@ -1,0 +1,810 @@
+{
+    "start-scene": "game",
+    "window": {
+        "title": "Lightning Deliveree",
+        "size": {
+            "width": 1280,
+            "height": 720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "renderer": {
+            "sky": "assets/textures/sky_night.jpg"
+            //"postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
+                },
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
+                },
+                "lighted": {
+                    "vs": "assets/shaders/light.vert",
+                    "fs": "assets/shaders/light.frag"
+                }
+            },
+            "textures": {
+                "floor": "assets/textures/floor2.jpg",
+                "start": "assets/textures/start.png",
+                "road": "assets/textures/road.jpg",
+                "car": "assets/textures/car.jpg",
+                "moon": "assets/textures/moon.jpg",
+                "battery": "assets/textures/battery.jpeg",
+                "energy": "assets/textures/red.jpeg",
+                "energy_yellow": "assets/textures/yellow.jpeg",
+                "battery_bar": "assets/textures/battery2.png",
+                "bar": "assets/textures/barborder.png",
+                "building1": "assets/textures/building1.jpg",
+                "building2": "assets/textures/building2.jpg",
+                "white": "assets/textures/white.jpg",
+                "black": "assets/textures/black.jpg"
+            },
+            "meshes": {
+                "plane": "assets/models/plane.obj",
+                "battery": "assets/models/battery.obj",
+                "car": "assets/models/car.obj",
+                "moon": "assets/models/sphere.obj",
+                "cube": "assets/models/cube.obj"
+            },
+            "samplers": {
+                "default": {},
+                "pixelated": {
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials": {
+                "floor": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "floor",
+                    "sampler": "default",
+                    "specular": "floor",
+                    "emissive": "black",
+                    "ambient_occlusion": "floor",
+                    "roughness": "black"
+                },
+                "building1": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "building1",
+                    "sampler": "default",
+                    "specular": "building1",
+                    "emissive": "black",
+                    "ambient_occlusion": "building1",
+                    "roughness": "black"
+                },
+                "building2": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    // "tint": [1, 0.529, 0.141, 1]
+                    "albedo": "building2",
+                    "sampler": "default",
+                    "specular": "building2",
+                    "emissive": "black",
+                    "ambient_occlusion": "building2",
+                    "roughness": "black"
+                },
+                "start": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "start",
+                    "sampler": "default",
+                    "specular": "start",
+                    "emissive": "black",
+                    "ambient_occlusion": "start",
+                    "roughness": "black"
+                },
+                "road": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "road",
+                    "sampler": "default",
+                    "specular": "road",
+                    "emissive": "black",
+                    "ambient_occlusion": "road",
+                    "roughness": "black"
+                },
+                "transparent": {
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": false
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 0]
+                },
+                "car": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "car",
+                    "sampler": "default",
+                    "specular": "car",
+                    "emissive": "black",
+                    "ambient_occlusion": "car",
+                    "roughness": "black"
+                },
+                "moon": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "moon",
+                    "sampler": "default",
+                    "specular": "moon",
+                    "emissive": "black",
+                    "ambient_occlusion": "moon",
+                    "roughness": "black"
+                },
+                "battery": {
+                    "type": "lighted",
+                    "shader": "lighted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "battery",
+                    "sampler": "default",
+                    "specular": "battery",
+                    "emissive": "battery",
+                    "ambient_occlusion": "battery",
+                    "roughness": "black"
+                },
+                "battery_bar": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": false
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 1],
+                    "texture": "battery_bar",
+                    "sampler": "default"
+                },
+                "bar": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": false
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 1],
+                    "texture": "bar",
+                    "sampler": "default"
+                },
+                "energy": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": false
+                        },
+                        "blending": {
+                            "enabled": true,
+                            "sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+                        },
+                        "depthMask": false
+                    },
+                    "transparent": true,
+                    "tint": [1, 1, 1, 1],
+                    "texture": "energy",
+                    "sampler": "default"
+                }
+            }
+        },
+        "world": [
+            {
+                "name": "robot",
+                "position": [0, -0.9, -15],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Mesh Renderer Controller"
+                    },
+                    {
+                        "type": "Collider"
+                    },
+                    {
+                        "type": "Light",
+                        "lightType": "Spot",
+                        "direction": [-1, 0, 0],
+                        "diffuse": [1, 1, 1],
+                        "specular": [1, 1, 1],
+                        "attenuation": [0.0095, 0.0095, 0.00095],
+                        "cone_angles.inner": 20,
+                        "cone-angles.outer": 50
+                    },
+                    {
+                        "type": "Light",
+                        "lightType": "Spot",
+                        "direction": [0, 0, -1],
+                        "diffuse": [1, 1, 1],
+                        "specular": [1, 1, 1],
+                        "attenuation": [0.0095, 0.0095, 0.00095],
+                        "cone_angles.inner": 20,
+                        "cone-angles.outer": 50
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [0, 2, -3],
+                        "rotation": [-15, 180, 0],
+                        "components": [
+                            {
+                                "type": "Camera"
+                            }
+                        ],
+                        "children": [
+                            {
+                                "position": [8.125, 5, -6],
+                                "scale": [1.185, 0.6, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "bar"
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [6.58, 5.1, -6],
+                                "scale": [0.78, 0.69, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "battery_bar"
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [9, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [8.65, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [8.3, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 3
+                                    }
+                                ]
+                            },
+
+                            {
+                                "position": [7.95, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 4
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [7.6, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "position": [7.25, 5, -6],
+                                "scale": [0.15, 0.35, 1],
+                                "components": [
+                                    {
+                                        "type": "Mesh Renderer",
+                                        "mesh": "plane",
+                                        "material": "energy"
+                                    },
+                                    {
+                                        "type": "Energy",
+                                        "id": 6
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "car",
+                "position": [1.5, -0.9, 0],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "car",
+                "position": [-1.5, -0.9, 7],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "car",
+                "position": [0, -0.9, 20],
+                "scale": [0.8, 0.8, 0.8],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "car",
+                        "material": "car"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "battery",
+                "position": [-2, -0.9, 15],
+                "scale": [0.7, 0.4, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Collider"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name": "battery light",
+                "position": [2, 2, 15],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "Point",
+                        "specular": [1, 0.3, 1.0],
+                        "diffuse": [1, 0.3, 1.0],
+                        "attenuation": [0.02, 0.02, 0.002]
+                    }
+                ]
+            },
+            {
+                "name": "battery",
+                "position": [1, -0.9, 15],
+                "scale": [0.7, 0.4, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Collider"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
+            {
+                "name": "battery light",
+                "position": [-1, 2, 15],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "Point",
+                        "specular": [0, 0.7, 1.0],
+                        "diffuse": [0, 0.7, 1.0],
+                        "attenuation": [0.02, 0.02, 0.002]
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, -15],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 3, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "start"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, -2],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 10, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "road"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, 8],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 10, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "road"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, 27],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 10, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "road"
+                    }
+                ]
+            },
+            {
+                "position": [0, -0.9, 40],
+                "rotation": [-90, 0, 0],
+                "scale": [3, 3, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "start"
+                    }
+                ]
+            },
+            {
+                "name": "end-line",
+                "position": [0, 1, 40],
+                "scale": [3, 2, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "transparent"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [10, 9.1, -10],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [10, 9.1, 5],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [10, 9.1, 20],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [10, 9.1, 35],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [-10, 9.1, -10],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [-10, 9.1, 5],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [-10, 9.1, 20],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "name": "building",
+                "position": [-10, 9.1, 35],
+                "scale": [6, 10, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
+                    }
+                ]
+            },
+            {
+                "position": [0, -1, 0],
+                "rotation": [-90, 0, 0],
+                "scale": [20, 20, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "floor"
+                    }
+                ]
+            },
+            {
+                "position": [0, -1, 33],
+                "rotation": [-90, 0, 0],
+                "scale": [20, 13, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "floor"
+                    }
+                ]
+            },
+            {
+                "position": [0, 18, 18],
+                "rotation": [45, 45, 0],
+                "scale": [1, 1, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "moon",
+                        "material": "moon"
+                    },
+                    {
+                        "type": "Light",
+                        "lightType": "Directional",
+                        "diffuse": [0.53725, 0.811764, 0.94117647],
+                        "specular": [0.53725, 0.811764, 0.94117647],
+                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "cone_angles.inner": 20,
+                        "cone-angles.outer": 50
+                    }
+                ]
+            }
+        ]
+    }
+}

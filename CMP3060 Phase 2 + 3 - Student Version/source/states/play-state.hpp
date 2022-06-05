@@ -67,8 +67,10 @@ class Playstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         int energy = energySystem.getEnergy(&world);
-        meshRendererController.update(&world, (float)deltaTime, energy);
+
+        meshRendererController.update(&world, (float)deltaTime, (float)energy);
         bool hit = collision.update(&world, (float)deltaTime);
+
         world.deleteMarkedEntities();
         // And finally we use the renderer system to draw the scene
         if (hit){
