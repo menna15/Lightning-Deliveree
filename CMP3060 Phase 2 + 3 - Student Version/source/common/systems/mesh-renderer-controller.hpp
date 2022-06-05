@@ -16,8 +16,7 @@ namespace our
     class MeshRendererControllerSystem
     {
         Application *app;     // The application in which the state runs
-        bool started = false; // Whether the game has started or not
-        int energy = 6; // indecats the energy to control speed with 
+        bool started = false; // Whether the game has started or not 
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
@@ -69,7 +68,7 @@ namespace our
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             energy *= 3;
-            current_sensitivity += glm::vec3(energy, energy, energy);
+            current_sensitivity += glm::vec3(0, 0, energy);
 
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             // if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
