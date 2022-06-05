@@ -97,9 +97,9 @@ namespace our
                             printf("\nexceed distance \n");
 
                             // if the robot hits a battery, remove the battery and charge the robot
-                            if (collider1_type == "battery" && collider2_type == "robot")
+                            if (collider1_type == "robot" && collider2_type == "battery")
                             {
-                                world->markForRemoval(collider_1->getOwner());
+                                world->markForRemoval(collider_2->getOwner());
                                 energyController.update(world, EnergyActionType::INC);
                                 return;
                             }
