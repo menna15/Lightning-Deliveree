@@ -60,19 +60,19 @@ namespace our
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
 
-            // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
-            if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
-                current_sensitivity *= controller->speedupFactor;
+            // // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
+            // if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
+            //     current_sensitivity *= controller->speedupFactor;
 
             // We change the camera position based on the keys WASD/QE
 
             // S & W moves the player back and forth
-            if (app->getKeyboard().isPressed(GLFW_KEY_S))
+            if (app->getKeyboard().isPressed(GLFW_KEY_S) || app->getKeyboard().isPressed(GLFW_KEY_DOWN))
             {
                 // rotation.y = 0;
                 position += front * (deltaTime * current_sensitivity.z);
             }
-            if (app->getKeyboard().isPressed(GLFW_KEY_W))
+            // if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
                 // rotation.y = 0;
                 position -= front * (deltaTime * current_sensitivity.z);
@@ -85,12 +85,12 @@ namespace our
                 position -= up * (deltaTime * current_sensitivity.y);
 
             // A & D moves the player left or right
-            if (app->getKeyboard().isPressed(GLFW_KEY_A))
+            if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
             {
                 rotation.y += 0.01f;
                 // position += right * (deltaTime * current_sensitivity.x);
             }
-            if (app->getKeyboard().isPressed(GLFW_KEY_D))
+            if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
             {
                 rotation.y -= 0.01f;
                 // position -= right * (deltaTime * current_sensitivity.x);
