@@ -23,6 +23,7 @@ class MainMenu : public our::State
     {
         // First of all, we get the scene configuration from the app config
         auto &config = getApp()->getConfig()["scene"];
+        
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
@@ -45,8 +46,8 @@ class MainMenu : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         meshRendererController.update(&world, (float)deltaTime);
-        //energySystem.update(&world, (float)deltaTime);
-        // And finally we use the renderer system to draw the scene
+        // energySystem.update(&world, (float)deltaTime);
+        //  And finally we use the renderer system to draw the scene
         renderer.render(&world);
     }
 

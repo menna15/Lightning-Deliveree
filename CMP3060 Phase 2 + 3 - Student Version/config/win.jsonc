@@ -1,50 +1,49 @@
 {
     "start-scene": "winner",
-    "window":
-    {
-        "title":"Lightning Deliveree - Winner",
-        "size":{
-            "width":1224,
-            "height":720
+    "window": {
+        "title": "Lightning Deliveree",
+        "size": {
+            "width": 1224,
+            "height": 720
         },
         "fullscreen": false
     },
     "scene": {
-        "renderer":{
+        "renderer": {
             "sky": "assets/textures/neon.png"
         },
-        "assets":{
-            "shaders":{
-                "tinted":{
-                    "vs":"assets/shaders/tinted.vert",
-                    "fs":"assets/shaders/tinted.frag"
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
                 },
-                "textured":{
-                    "vs":"assets/shaders/textured.vert",
-                    "fs":"assets/shaders/textured.frag"
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
                 }
             },
-            "textures":{
+            "textures": {
                 "ground": "assets/textures/Winner.png"
             },
-            "meshes":{
+            "meshes": {
                 "plane": "assets/models/plane.obj"
             },
-            "samplers":{
-                "default":{},
-                "pixelated":{
+            "samplers": {
+                "default": {},
+                "pixelated": {
                     "MAG_FILTER": "GL_NEAREST"
                 }
             },
-            "materials":{
-                "ground":{
+            "materials": {
+                "ground": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
@@ -54,19 +53,19 @@
                 }
             }
         },
-        "world":[
+        "world": [
             {
-                "position": [0,0,10],
+                "position": [0, 0, 10],
                 "rotation": [45, 90, 0],
                 "components": [
                     {
                         "type": "Camera",
-                        "eye":[4,1,5],
-                        "center": [0,0,0],
-                        "up":[0,1,0],
-                        "fov":90,
-                        "near":0.01,
-                        "far":1000
+                        "eye": [4, 1, 5],
+                        "center": [0, 0, 0],
+                        "up": [0, 1, 0],
+                        "fov": 90,
+                        "near": 0.01,
+                        "far": 1000
                     }
                 ],
                 "children": [
