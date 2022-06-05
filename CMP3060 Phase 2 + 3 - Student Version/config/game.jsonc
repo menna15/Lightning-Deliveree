@@ -1195,7 +1195,7 @@
             {
                 "name": "end-line",
                 "position": [0, 1, 361],
-                "scale": [3, 2, 1],
+                "scale": [20, 2, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",

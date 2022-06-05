@@ -73,24 +73,23 @@ class Playstate : public our::State
 
         world.deleteMarkedEntities();
         // And finally we use the renderer system to draw the scene
-        if (hit){
-            renderer.effect = true; 
-            hit= false; 
-            time = 1;
-            }
-
-        // auto finish = std::chrono::high_resolution_clock::now();
-        // std::chrono::duration<double, std::milli> elapsed = finish - start;
-        if(renderer.effect && time == 60)
+        if (hit)
         {
-          std::cout << "here" << std::endl;
-          renderer.effect = false; 
-          time = 0;
+            renderer.effect = true;
+            hit = false;
+            time = 1;
         }
-        else {
+
+        if (renderer.effect && time == 40)
+        {
+            renderer.effect = false;
+            time = 0;
+        }
+        else
+        {
             time += 1;
         }
-        renderer.render(&world );
+        renderer.render(&world);
     }
 
     void onDestroy() override
