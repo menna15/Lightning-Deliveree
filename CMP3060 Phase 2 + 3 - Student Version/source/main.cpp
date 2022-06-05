@@ -45,10 +45,10 @@ int main(int argc, char **argv)
 
     // Create the application
     our::Application app(app_config);
+
     // Register all the states of the project in the application
     app.registerState<Playstate>("game");
     app.registerState<MainMenu>("main-menu");
-
     app.registerState<GameOver>("game-over");
     app.registerState<Winstate>("winner");
     app.registerState<MeshTestState>("mesh-test");
@@ -60,6 +60,7 @@ int main(int argc, char **argv)
     app.registerState<EntityTestState>("entity-test");
     app.registerState<RendererTestState>("renderer-test");
     app.registerState<Lightstate>("light-test");
+
     // Then choose the state to run based on the option "start-scene" in the config
     if (app_config.contains(std::string{"start-scene"}))
     {
