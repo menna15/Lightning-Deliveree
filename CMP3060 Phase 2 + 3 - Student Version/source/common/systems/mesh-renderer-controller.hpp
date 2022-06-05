@@ -26,7 +26,7 @@ namespace our
         }
 
         // This should be called every frame to update all entities containing a MeshRendererController
-        void update(World *world, float deltaTime, int energy)
+        void update(World *world, float deltaTime, float energy)
         {
             // First of all, we search for an entity containing both a MeshRendererComponent and a MeshRendererController
             // As soon as we find one, we break
