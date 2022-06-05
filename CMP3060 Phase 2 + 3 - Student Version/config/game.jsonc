@@ -30,20 +30,19 @@
                 "road": "assets/textures/road.jpg",
                 "car": "assets/textures/car.jpg",
                 "moon": "assets/textures/moon.jpg",
-                "battery": "assets/textures/battery.jpg",
+                "battery": "assets/textures/battery.jpeg",
                 "energy": "assets/textures/red.jpeg",
                 "energy_yellow": "assets/textures/yellow.jpeg",
                 //"energy-green": "assets/textures/green.jpeg",
-                "battery_bar":"assets/textures/battery2.png",
-                "bar":"assets/textures/barborder.png"
+                "battery_bar": "assets/textures/battery2.png",
+                "bar": "assets/textures/barborder.png"
             },
             "meshes": {
                 "plane": "assets/models/plane.obj",
-                "cylinder": "assets/models/cylinder.obj",
+                "battery": "assets/models/battery.obj",
                 "car": "assets/models/car.obj",
                 "moon": "assets/models/sphere.obj",
                 "cube": "assets/models/cube.obj"
-                
             },
             "samplers": {
                 "default": {},
@@ -176,13 +175,13 @@
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": false
                         },
-                        "blending":{
+                        "blending": {
                             "enabled": true,
                             "sourceFactor": "GL_SRC_ALPHA",
                             "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
@@ -198,13 +197,13 @@
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": false
                         },
-                        "blending":{
+                        "blending": {
                             "enabled": true,
                             "sourceFactor": "GL_SRC_ALPHA",
                             "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
@@ -246,8 +245,7 @@
                         "material": "car"
                     },
                     {
-                        "type": "Collider",
-                        "radius": 0.8
+                        "type": "Collider"
                     }
                 ]
             },
@@ -262,8 +260,7 @@
                         "material": "car"
                     },
                     {
-                        "type": "Collider",
-                        "radius": 0.8
+                        "type": "Collider"
                     }
                 ]
             },
@@ -278,24 +275,22 @@
                         "material": "car"
                     },
                     {
-                        "type": "Collider",
-                        "radius": 0.8
+                        "type": "Collider"
                     }
                 ]
             },
             {
                 "name": "battery",
                 "position": [-2, -0.9, 15],
-                "scale": [0.3, 0.6, 0.3],
+                "scale": [0.7, 0.4, 0.7],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "cylinder",
+                        "mesh": "battery",
                         "material": "battery"
                     },
                     {
-                        "type": "Collider",
-                        "radius": 0.3
+                        "type": "Collider"
                     },
                     {
                         "type": "Movement",
@@ -319,16 +314,15 @@
             {
                 "name": "battery",
                 "position": [1, -0.9, 15],
-                "scale": [0.3, 0.6, 0.3],
+                "scale": [0.7, 0.4, 0.7],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "cylinder",
+                        "mesh": "battery",
                         "material": "battery"
                     },
                     {
-                        "type": "Collider",
-                        "radius": 0.3
+                        "type": "Collider"
                     },
                     {
                         "type": "Movement",
@@ -410,17 +404,22 @@
                 ]
             },
             {
-                "position": [10, 9.1, -5],
+                "name": "building",
+                "position": [10, 9.1, -10],
                 "scale": [6, 10, 5],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [10, 9.1, 5],
                 "scale": [6, 10, 5],
                 "components": [
@@ -428,10 +427,14 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [10, 9.1, 20],
                 "scale": [6, 10, 5],
                 "components": [
@@ -439,10 +442,14 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [10, 9.1, 35],
                 "scale": [6, 10, 5],
                 "components": [
@@ -450,6 +457,9 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
@@ -461,10 +471,14 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [-10, 9.1, 5],
                 "scale": [6, 10, 5],
                 "components": [
@@ -472,10 +486,14 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [-10, 9.1, 20],
                 "scale": [6, 10, 5],
                 "components": [
@@ -483,10 +501,14 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building2"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },
             {
+                "name": "building",
                 "position": [-10, 9.1, 35],
                 "scale": [6, 10, 5],
                 "components": [
@@ -494,6 +516,9 @@
                         "type": "Mesh Renderer",
                         "mesh": "cube",
                         "material": "building1"
+                    },
+                    {
+                        "type": "Collider"
                     }
                 ]
             },

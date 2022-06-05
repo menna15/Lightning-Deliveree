@@ -42,7 +42,6 @@ namespace our
             // store all the existed colliders in the scene
             for (auto entity : world->getEntities())
             {
-
                 if (auto collider = entity->getComponent<colliderComponent>(); collider)
                 {
                     colliders.emplace_back(collider);
@@ -62,29 +61,49 @@ namespace our
             {
                 string collider1_type = collider_1->getOwner()->name;
 
-                auto center1 = collider_1->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                bool collided=false;
+                // get the collider's position
+                glm::vec3 collider1_position = collider_1->getOwner()->localTransform.position;
+
+                // get the collider's size
+                glm::vec3 collider1_size = collider_1->getOwner()->localTransform.scale;
+
+                // get th collider's max and min position
+                glm::vec3 collider1_max = collider1_position + collider1_size;
+                glm::vec3 collider1_min = collider1_position - collider1_size;
+
+                // check for collision with other colliders
                 for (auto collider_2 : colliders)
                 {
                     string collider2_type = collider_2->getOwner()->name;
-                    auto center2 = collider_2->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+
+                    // get the collider's position
+                    glm::vec3 collider2_position = collider_2->getOwner()->localTransform.position;
+
+                    // get the collider's size
+                    glm::vec3 collider2_size = collider_2->getOwner()->localTransform.scale;
+
+                    // get the collider's max and min position
+                    glm::vec3 collider2_max = collider2_position + collider2_size;
+                    glm::vec3 collider2_min = collider2_position - collider2_size;
 
                     if (collider1_type != collider2_type)
                     {
-                        auto dist = abs(glm::distance(center1, center2));
-                        // std::cout << dist << "\n";
-                        if (dist <= collider_1->radius + collider_2->radius)
+                        // if the robot is in the range of the obstacle, take an action
+                        if (collider1_max.x >= collider2_min.x && collider1_min.x <= collider2_max.x &&
+                            collider1_max.y >= collider2_min.y && collider1_min.y <= collider2_max.y &&
+                            collider1_max.z >= collider2_min.z && collider1_min.z <= collider2_max.z)
                         {
                             
                             printf("\nexceed distance \n");
-                            if ((collider1_type == "car" && collider2_type == "robot"))
+
+                            // if the robot hits a battery, remove the battery and charge the robot
+                            if (collider1_type == "battery" && collider2_type == "robot")
                             {
-                                // app->changeState("main-menu");
                                 world->markForRemoval(collider_1->getOwner());
                                 energyController.update(world, EnergyActionType::DEC);
                                 return;
                             }
-                            else if (collider1_type == "robot" && collider2_type == "car")
+                            else if (collider1_type == "robot" && collider2_type == "battery")
                             {
                                 // app->changeState("main-menu");
                                 // printf("here2");
@@ -92,16 +111,15 @@ namespace our
                                 energyController.update(world, EnergyActionType::DEC);
                                 return;
                             }
-                            else if (collider1_type == "battery" && collider2_type == "robot")
+                            else if (collider2_type == "robot" && collider1_type == "car")
                             {
-                                // app->changeState("win");
-                                printf("here2\n");
-
                                 world->markForRemoval(collider_1->getOwner());
                                 energyController.update(world, EnergyActionType::INC);
                                 return;
                             }
-                            else if (collider1_type == "robot" && collider2_type == "battery")
+
+                            // if the car hits a building, change the position of the car to the middle of the road and reduce its energy
+                            else if (collider1_type == "robot" && collider2_type == "building")
                             {
                                 world->markForRemoval(collider_2->getOwner());
                                 energyController.update(world, EnergyActionType::INC);

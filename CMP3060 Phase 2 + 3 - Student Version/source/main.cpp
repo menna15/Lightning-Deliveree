@@ -18,6 +18,7 @@
 #include "states/renderer-test-state.hpp"
 #include "states/light-test-state.hpp"
 #include "states/winner-state.hpp"
+#include "states/game-over-state.hpp"
 
 int main(int argc, char **argv)
 {
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
     // Register all the states of the project in the application
     app.registerState<MainMenu>("main-menu");
     app.registerState<Playstate>("game");
+    app.registerState<GameOver>("game-over");
     app.registerState<Winstate>("winner");
     app.registerState<MeshTestState>("mesh-test");
     app.registerState<TransformTestState>("transform-test");

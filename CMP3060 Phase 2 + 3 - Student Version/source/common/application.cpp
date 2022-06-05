@@ -289,7 +289,7 @@ int our::Application::run(int run_for_frames)
             break;
         glfwPollEvents(); // Read all the user events and call relevant callbacks.
 
-        if(currentState==states["winner"] && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
+        if((currentState == states["winner"] || currentState == states["game-over"]) && this->getKeyboard().isPressed(GLFW_KEY_ENTER))
         {
             changeState("main-menu");
         }

@@ -65,8 +65,8 @@ namespace our
             //  Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             //  The depth format can be (Depth component with 24 bits).
 
-            colorTarget = texture_utils::empty(GL_RGBA8,windowSize);            
-            depthTarget = texture_utils::empty(GL_DEPTH_COMPONENT24,windowSize);
+            colorTarget = texture_utils::empty(GL_RGBA8, windowSize);
+            depthTarget = texture_utils::empty(GL_DEPTH_COMPONENT24, windowSize);
 
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
@@ -159,7 +159,7 @@ namespace our
                 }
             }
             // for light components add them to lights list
-            if(auto light = entity->getComponent<LightComponent>(); light)
+            if (auto light = entity->getComponent<LightComponent>(); light)
             {
                 lights.push_back(light);
             }
@@ -213,59 +213,55 @@ namespace our
         {
             // For each transform, we compute the MVP matrix and send it to the "transform" uniform
             command.material->setup();
-            
+
             // here we will use downcasting to convert from material "base class" to "light class"
-            // if it return not nullptr then it means that the material is holding Light material inside 
+            // if it return not nullptr then it means that the material is holding Light material inside
             // else it isn't a light material.
 
-            if(auto light_material = dynamic_cast<LightMaterial *>(command.material); light_material)
+            if (auto light_material = dynamic_cast<LightMaterial *>(command.material); light_material)
             {
-                light_material->shader->set("VP", VP); 
-                light_material->shader->set("eye", eyeTrans); 
-                light_material->shader->set("M", command.localToWorld); 
-                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld))); 
-
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("eye", eyeTrans);
+                light_material->shader->set("M", command.localToWorld);
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
 
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
-                light_material->shader->set("light_count",(int)lights.size());
+                light_material->shader->set("light_count", (int)lights.size());
 
-                for(unsigned i = 0 ; i<lights.size(); i++)
-                {   
+                for (unsigned i = 0; i < lights.size(); i++)
+                {
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
 
-                    std::string light_name = "lights["+std::to_string(i)+"]";
+                    std::string light_name = "lights[" + std::to_string(i) + "]";
 
-                    light_material->shader->set(light_name +".type",(GLint)lights[i]->light_type);
-                    light_material->shader->set(light_name +".diffuse", lights[i]->diffuse);
-                    light_material->shader->set(light_name +".specular",lights[i]->specular);
-                    light_material->shader->set(light_name +".attenuation",lights[i]->attenuation);
+                    light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
+                    light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
+                    light_material->shader->set(light_name + ".specular", lights[i]->specular);
+                    light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
 
-                    switch(lights[i]->light_type)
+                    switch (lights[i]->light_type)
                     {
-                        case LIGHT_TYPE::DIRECTIONAL:
-                            light_material->shader->set(light_name + ".direction",light_direction);
-                            break;
-                        case LIGHT_TYPE::SPOT:
-                            light_material->shader->set(light_name +".position",light_position);
-                            light_material->shader->set(light_name + ".direction",light_direction);
-                            light_material->shader->set(light_name + ".cone_angles",lights[i]->cone_angles);
-                            break;
-                        case LIGHT_TYPE::POINT:
-                            light_material->shader->set(light_name +".position",light_position);
+                    case LIGHT_TYPE::DIRECTIONAL:
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        break;
+                    case LIGHT_TYPE::SPOT:
+                        light_material->shader->set(light_name + ".position", light_position);
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        light_material->shader->set(light_name + ".cone_angles", lights[i]->cone_angles);
+                        break;
+                    case LIGHT_TYPE::POINT:
+                        light_material->shader->set(light_name + ".position", light_position);
 
-                            break;
+                        break;
                     }
-
                 }
-
             }
             else
             {
                 command.material->shader->set("transform", VP * command.localToWorld); // iam not sure that localToWorld is the transformation matrix we need.
-
             }
-            
+
             // Then we draw a mesh instance
             command.mesh->draw();
         }
@@ -305,58 +301,52 @@ namespace our
         {
             command.material->setup();
 
-
             // here we will use downcasting to convert from material "base class" to "light class"
-            // if it return not nullptr then it means that the material is holding Light material inside 
+            // if it return not nullptr then it means that the material is holding Light material inside
             // else it isn't a light material.
 
-
-            if(auto light_material = dynamic_cast<LightMaterial *>(command.material); light_material)
+            if (auto light_material = dynamic_cast<LightMaterial *>(command.material); light_material)
             {
-                light_material->shader->set("VP", VP); 
-                light_material->shader->set("eye", eyeTrans); 
-                light_material->shader->set("M", command.localToWorld); 
-                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld))); 
-
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("eye", eyeTrans);
+                light_material->shader->set("M", command.localToWorld);
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
 
                 // send the lights count and other data (pos, direc , ..) to the fragement shader
-                light_material->shader->set("light_count",(int)lights.size());
+                light_material->shader->set("light_count", (int)lights.size());
 
-                for(unsigned i = 0 ; i<lights.size(); i++)
-                {   
+                for (unsigned i = 0; i < lights.size(); i++)
+                {
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
 
-                    std::string light_name = "lights["+std::to_string(i)+"]";
+                    std::string light_name = "lights[" + std::to_string(i) + "]";
 
-                    light_material->shader->set(light_name +".position",light_position);
-                    light_material->shader->set(light_name +".type",(GLint)lights[i]->light_type);
-                    light_material->shader->set(light_name +".diffuse", lights[i]->diffuse);
-                    light_material->shader->set(light_name +".specular",lights[i]->specular);
-                    light_material->shader->set(light_name +".attenuation",lights[i]->attenuation);
+                    light_material->shader->set(light_name + ".position", light_position);
+                    light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
+                    light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
+                    light_material->shader->set(light_name + ".specular", lights[i]->specular);
+                    light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
 
-                    switch(lights[i]->light_type)
+                    switch (lights[i]->light_type)
                     {
-                        case LIGHT_TYPE::DIRECTIONAL:
-                            light_material->shader->set(light_name + ".direction",light_direction);
-                            break;
-                        case LIGHT_TYPE::SPOT:
-                            light_material->shader->set(light_name + ".direction",light_direction);
-                            light_material->shader->set(light_name + ".cone_angles",lights[i]->cone_angles);
-                            break;
-                        case LIGHT_TYPE::POINT:
-                            break;
+                    case LIGHT_TYPE::DIRECTIONAL:
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        break;
+                    case LIGHT_TYPE::SPOT:
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        light_material->shader->set(light_name + ".cone_angles", lights[i]->cone_angles);
+                        break;
+                    case LIGHT_TYPE::POINT:
+                        break;
                     }
                 }
-
             }
             else
             {
                 command.material->shader->set("transform", VP * command.localToWorld); // iam not sure that localToWorld is the transformation matrix we need.
-
             }
 
-            
             // Then we draw a mesh instance
             command.mesh->draw();
         }

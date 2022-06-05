@@ -10,7 +10,7 @@
 #include <systems/energy-controller.hpp>
 
 // This state shows how to use the ECS framework and deserialization.
-class Winstate : public our::State
+class GameOver : public our::State
 {
 
     our::World world;
@@ -21,7 +21,7 @@ class Winstate : public our::State
 
     void onInitialize() override
     {
-        std::string config_path = "config/win.jsonc";
+        std::string config_path = "config/game-over.jsonc";
 
         // Open the config file and exit if failed
         std::ifstream file_in(config_path);
