@@ -36,11 +36,11 @@ class Playstate : public our::State
         }
 
         // Read the file into a json object then close the file
-        nlohmann::json game_config = nlohmann::json::parse(file_in, nullptr, true, true);
+        nlohmann::json fileConfigs = nlohmann::json::parse(file_in, nullptr, true, true);
         file_in.close();
 
         // First of all, we get the scene configuration from the app config
-        auto &config = game_config["scene"];
+        auto &config = fileConfigs["scene"];
 
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
