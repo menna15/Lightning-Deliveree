@@ -93,40 +93,37 @@ namespace our
                             collider1_max.y >= collider2_min.y && collider1_min.y <= collider2_max.y &&
                             collider1_max.z >= collider2_min.z && collider1_min.z <= collider2_max.z)
                         {
-                            
+
                             printf("\nexceed distance \n");
 
                             // if the robot hits a battery, remove the battery and charge the robot
                             if (collider1_type == "battery" && collider2_type == "robot")
                             {
                                 world->markForRemoval(collider_1->getOwner());
-                                energyController.update(world, EnergyActionType::DEC);
-                                return;
-                            }
-                            else if (collider1_type == "robot" && collider2_type == "battery")
-                            {
-                                // app->changeState("main-menu");
-                                // printf("here2");
-                                world->markForRemoval(collider_2->getOwner());
-                                energyController.update(world, EnergyActionType::DEC);
-                                return;
-                            }
-                            else if (collider2_type == "robot" && collider1_type == "car")
-                            {
-                                world->markForRemoval(collider_1->getOwner());
                                 energyController.update(world, EnergyActionType::INC);
                                 return;
                             }
 
-                            // if the car hits a building, change the position of the car to the middle of the road and reduce its energy
-                            else if (collider1_type == "robot" && collider2_type == "building")
+                            // if the robot hits a car, remove the car and decrease the robot's energy
+                            if (collider1_type == "robot" && collider2_type == "car")
                             {
                                 world->markForRemoval(collider_2->getOwner());
-                                energyController.update(world, EnergyActionType::INC);
-                                printf("here3\n");
+                                energyController.update(world, EnergyActionType::DEC);
                                 return;
                             }
-                            
+
+                            // if the robot hits a building, change the position of the robot to the middle of the road and reduce its energy
+                            if (collider1_type == "robot" && collider2_type == "building")
+                            {
+                                // center the robot on the road
+                                collider_1->getOwner()->localTransform.position.x = 0.0f;
+
+                                // rotate the robot to the initial direction
+                                collider_1->getOwner()->localTransform.rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+
+                                energyController.update(world, EnergyActionType::DEC);
+                                return;
+                            }
                         }
                     }
                 }
