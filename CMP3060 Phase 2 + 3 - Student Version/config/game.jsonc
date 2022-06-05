@@ -39,7 +39,7 @@
                 "energy_yellow": "assets/textures/yellow.jpeg",
                 "battery_bar": "assets/textures/battery2.png",
                 "bar": "assets/textures/barborder.png",
-                "building1": "assets/textures/building1.jpg",
+                "building1": "assets/textures/build.jpeg",
                 "building2": "assets/textures/building2.jpg",
                 "white": "assets/textures/white.jpg",
                 "black": "assets/textures/black.jpg"
@@ -71,7 +71,7 @@
                     },
                     "albedo": "floor",
                     "sampler": "default",
-                    "specular": "floor",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "floor",
                     "roughness": "black"
@@ -89,7 +89,7 @@
                     },
                     "albedo": "building1",
                     "sampler": "default",
-                    "specular": "building1",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "building1",
                     "roughness": "black"
@@ -108,7 +108,7 @@
                     // "tint": [1, 0.529, 0.141, 1]
                     "albedo": "building2",
                     "sampler": "default",
-                    "specular": "building2",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "building2",
                     "roughness": "black"
@@ -126,7 +126,7 @@
                     },
                     "albedo": "start",
                     "sampler": "default",
-                    "specular": "start",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "start",
                     "roughness": "black"
@@ -144,7 +144,7 @@
                     },
                     "albedo": "road",
                     "sampler": "default",
-                    "specular": "road",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "road",
                     "roughness": "black"
@@ -182,7 +182,7 @@
                     },
                     "albedo": "car",
                     "sampler": "default",
-                    "specular": "car",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "car",
                     "roughness": "black"
@@ -200,7 +200,7 @@
                     },
                     "albedo": "moon",
                     "sampler": "default",
-                    "specular": "moon",
+                    "specular": "white",
                     "emissive": "black",
                     "ambient_occlusion": "moon",
                     "roughness": "black"

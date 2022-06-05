@@ -67,7 +67,7 @@ namespace our
             }
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
-            energy *= 3;
+            energy *= 1.5;
             current_sensitivity += glm::vec3(0, 0, energy);
 
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
