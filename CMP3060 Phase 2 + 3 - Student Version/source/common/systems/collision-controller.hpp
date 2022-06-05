@@ -95,8 +95,6 @@ namespace our
                             collider1_max.z >= collider2_min.z && collider1_min.z <= collider2_max.z)
                         {
 
-                            printf("\nexceed distance \n");
-
                             // if the robot hits a battery, remove the battery and charge the robot
                             if (collider1_type == "robot" && collider2_type == "battery")
                             {

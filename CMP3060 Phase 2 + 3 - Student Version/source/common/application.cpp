@@ -298,6 +298,7 @@ int our::Application::run(int run_for_frames)
         {
             if (this->getKeyboard().isPressed(GLFW_KEY_ENTER))
             {
+                this->registerState<MainMenu>("main-menu");
                 changeState("main-menu");
             }
             else if (this->getKeyboard().isPressed(GLFW_KEY_ESCAPE))
@@ -335,10 +336,6 @@ int our::Application::run(int run_for_frames)
                 this->registerState<Playstate>("game");
                 changeState("game");
             }
-
-            // if (ImGui::Button("Options", ImVec2(200, 100)))
-            // {
-            // }
 
             if (ImGui::Button("Exit", ImVec2(200, 100)) || keyboard.justPressed(GLFW_KEY_ESCAPE))
             {

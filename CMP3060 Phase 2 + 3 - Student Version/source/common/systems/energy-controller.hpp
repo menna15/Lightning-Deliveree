@@ -51,7 +51,7 @@ namespace our
                     if (((energy->id == 1 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
                          (energy->id == 6 && action == EnergyActionType::DEC && entity->localTransform.scale.x > scale)))
                     {
-                        energy->active= !energy->active;
+                        energy->active = !energy->active;
                         entity->localTransform.scale.x = scale;
                         return;
                     }
@@ -68,7 +68,7 @@ namespace our
                     if (((energy->id == 2 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
                          (energy->id == 5 && action == EnergyActionType::DEC && entity->localTransform.scale.x > scale)))
                     {
-                        energy->active= !energy->active;
+                        energy->active = !energy->active;
                         entity->localTransform.scale.x = scale;
                         return;
                     }
@@ -84,7 +84,7 @@ namespace our
                     if (((energy->id == 3 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
                          (energy->id == 4 && action == EnergyActionType::DEC && entity->localTransform.scale.x > scale)))
                     {
-                        energy->active= !energy->active;
+                        energy->active = !energy->active;
 
                         entity->localTransform.scale.x = scale;
                         return;
@@ -97,7 +97,7 @@ namespace our
                 EnergyComponent *energy = entity->getComponent<EnergyComponent>();
                 if (energy)
                 {
-                    energy->active= !energy->active;
+                    energy->active = !energy->active;
 
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     if ((energy->id == 4 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
@@ -114,7 +114,7 @@ namespace our
                 EnergyComponent *energy = entity->getComponent<EnergyComponent>();
                 if (energy)
                 {
-                    energy->active= !energy->active;
+                    energy->active = !energy->active;
 
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     if (((energy->id == 5 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
@@ -126,7 +126,6 @@ namespace our
                 }
             }
 
-
             // For each entity in the world
             for (auto entity : world->getEntities())
             {
@@ -137,23 +136,23 @@ namespace our
                     if (((energy->id == 6 && action == EnergyActionType::INC && entity->localTransform.scale.x < scale) ||
                          (energy->id == 1 && action == EnergyActionType::DEC && entity->localTransform.scale.x > scale)))
                     {
-                        energy->active= !energy->active;
+                        energy->active = !energy->active;
                         entity->localTransform.scale.x = scale;
-                        if (action == EnergyActionType::DEC){
-                        app->registerState<GameOver>("game-over");
+                        if (action == EnergyActionType::DEC)
+                        {
+                            app->registerState<GameOver>("game-over");
 
-                        app->changeState("game-over");
+                            app->changeState("game-over");
                         }
                         return;
                     }
                 }
             }
-    }
+        }
 
-    int getEnergy(World *world)
+        int getEnergy(World *world)
         {
-            vector<EnergyComponent*> energies;
-            
+            vector<EnergyComponent *> energies;
 
             // For each entity in the world
             for (auto entity : world->getEntities())
@@ -162,20 +161,17 @@ namespace our
                 if (energy)
                 {
                     energies.emplace_back(energy);
-                    
                 }
             }
-            int maxActive =0;
-            for (EnergyComponent* energyComp: energies)
+            int maxActive = 0;
+            for (EnergyComponent *energyComp : energies)
             {
-                if(energyComp->id>maxActive&&energyComp->active)
+                if (energyComp->id > maxActive && energyComp->active)
                 {
-                    maxActive=energyComp->id;
+                    maxActive = energyComp->id;
                 }
             }
             return maxActive;
-
-    }
-
-};
+        }
+    };
 }

@@ -15,7 +15,9 @@ namespace our {
     // based on the "type" specified in the json object which is later deserialized from the rest of the json object
     inline void deserializeComponent(const nlohmann::json& data, Entity* entity){
         std::string type = data.value("type", "");
+        
         Component* component = nullptr;
+
         if(type == CameraComponent::getID()){
             component = entity->addComponent<CameraComponent>();
         } else if (type == MeshRendererComponent::getID()) {
@@ -24,16 +26,14 @@ namespace our {
             component = entity->addComponent<MeshRendererControllerComponent>();
         } else if (type == MovementComponent::getID()) {
             component = entity->addComponent<MovementComponent>();
-        }
-        else if (type == LightComponent::getID()) {
+        } else if (type == LightComponent::getID()) {
             component = entity->addComponent<LightComponent>();
-        }
-        else if (type == colliderComponent::getID()) {
+        } else if (type == colliderComponent::getID()) {
             component = entity->addComponent<colliderComponent>();
-        }
-        else if (type == EnergyComponent::getID()) {
+        } else if (type == EnergyComponent::getID()) {
             component = entity->addComponent<EnergyComponent>();
         }
+
         if(component) component->deserialize(data);
     }
 
